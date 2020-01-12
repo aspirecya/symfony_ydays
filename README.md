@@ -1,5 +1,5 @@
 # symfony_project
-
+php -S localhost:8000 -t public
 
     LOKISALLE - Sallea - SF - 27 janvier
 
