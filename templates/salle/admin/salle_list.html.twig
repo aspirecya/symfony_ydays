@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row custyle">
+            <table class="table table-striped custab">
+                <thead>
+                <a href="{{ path('admin_salle_create') }}" class="btn btn-primary btn-xs pull-right mb-4"><b>+</b> Créer une salle</a>
+                <tr>
+                    <th>ID</th>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>Pays</th>
+                    <th>Ville</th>
+                    <th>Adresse</th>
+                    <th>Code postal</th>
+                    <th>Capacité</th>
+                    <th>Catégorie</th>
+                    <th class="text-center">Action</th>
+                </tr>
+                </thead>
+                {% for salle in salles %}
+                    <tr>
+                        <td>{{ salle.id }}</td>
+                        <td>{{ salle.titre }}</td>
+                        <td>{{ salle.description | slice(0, 40) }}...</td>
+                        <td>{{ salle.pays }}</td>
+                        <td>{{ salle.ville }}</td>
+                        <td>{{ salle.adresse }}</td>
+                        <td>{{ salle.cp }}</td>
+                        <td>{{ salle.capacite }}</td>
+                        <td>{{ salle.categorie }}</td>
+                        <td class="text-center"><a class='btn btn-info btn-xs' href="{{ path('admin_salle_edit', { id: salle.id }) }}"><i class="far fa-edit"></i> Edit</a> <a href="{{ path('admin_salle_delete', { id: salle.id }) }}" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i> Del</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,44 +1,72 @@
-<!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>LokiEstate</title>
-		<!-- PLUGINS CSS STYLE -->
-		<link
-		href="{{ asset('plugins/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet">
-		<!-- Bootstrap -->
-		<link
-		href="{{ asset('plugins/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
-		<!-- Font Awesome -->
-		<link
-		href="{{ asset('plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
-		<!-- Owl Carousel -->
-		<link href="{{ asset('plugins/slick-carousel/slick/slick.css') }}" rel="stylesheet">
-		<link
-		href="{{ asset('plugins/slick-carousel/slick/slick-theme.css') }}" rel="stylesheet">
-		<!-- Fancy Box -->
-		<link href="{{ asset('plugins/fancybox/jquery.fancybox.pack.css') }}" rel="stylesheet">
-		<link href="{{ asset('plugins/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
-		<link href="{{ asset('plugins/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css') }}" rel="stylesheet">
-		<link href="{{ asset('css/main.css') }}" rel="stylesheet">
-	</head>
-	<body class="body-wrapper">
-		{% block body %}{% endblock %}
-	</body>
-	<!-- JAVASCRIPTS -->
-	<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-	<script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-	<script src="{{ asset('plugins/tether/js/tether.min.js') }}"></script>
-	<script src="{{ asset('plugins/raty/jquery.raty-fa.js') }}"></script>
-	<script src="{{ asset('plugins/bootstrap/dist/js/popper.min.js') }}"></script>
-	<script src="{{ asset('plugins/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-	<script src="{{ asset('plugins/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js') }}"></script>
-	<script src="{{ asset('plugins/slick-carousel/slick/slick.min.js') }}"></script>
-	<script src="{{ asset('plugins/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
-	<script src="{{ asset('plugins/fancybox/jquery.fancybox.pack.js') }}"></script>
-	<script src="{{ asset('plugins/smoothscroll/SmoothScroll.min.js') }}"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
-	<script src="{{ asset('css/main.js') }}"></script>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <style>{% block styles %}{% endblock %}</style>
+        {% block stylesheets %}{% endblock %}
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/d3381635c3.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+
+        <nav class="mb-5 navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">LOKISALLE</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Accueil<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Inscription</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Connexion</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            username
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Profil</a>
+                            <a class="dropdown-item" href="#">Deconnexion</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="{{ path('admin_salle') }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Admin
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ path('admin_salle') }}">Gestion des salles</a>
+                            <a class="dropdown-item" href="#">Gestion des users</a>
+                        </div>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+
+        <div class="container">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+            {% for message in app.flashes('errors') %}
+                <div class="alert alert-danger">{{ message }}</div>
+            {% endfor %}
+        </div>
+
+        <div style="margin-left: 30px; margin-right: 30px;">
+            {% block body %}{% endblock %}
+        </div>
+
+    {% block javascripts %}{% endblock %}
+    </body>
 </html>

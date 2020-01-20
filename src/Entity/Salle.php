@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SalleRepository")
@@ -19,7 +20,7 @@ class Salle
     /**
      * @ORM\Column(type="string", length=200)
      */
-    private $Titre;
+    private $titre;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -30,6 +31,7 @@ class Salle
      * @ORM\Column(type="string", length=200, nullable=true)
      */
     private $photo;
+    private $file;
 
     /**
      * @ORM\Column(type="string", length=20)
@@ -68,12 +70,12 @@ class Salle
 
     public function getTitre(): ?string
     {
-        return $this->Titre;
+        return $this->titre;
     }
 
-    public function setTitre(string $Titre): self
+    public function setTitre(string $titre): self
     {
-        $this->Titre = $Titre;
+        $this->titre = $titre;
 
         return $this;
     }
@@ -172,5 +174,32 @@ class Salle
         $this->categorie = $categorie;
 
         return $this;
+    }
+
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    public function setFile(UploadedFile $file = NULL): self
+    {
+        $this->file = $file;
+        return $this;
+    }
+
+    public function uploadFile()
+    {
+        $name = $this->file->getClientOriginalName();
+        $new_name = 'photo_' . time() . '_' . rand(1, 9999) . '_' . $name;
+        $dirPhoto = __DIR__ . '/../../public/photo/';
+        $this->file->move($dirPhoto, $new_name);
+        $this->photo = $new_name;
+    }
+
+    public function deleteFile()
+    {
+        if(file_exists(__DIR__ . '/../../public/photo' . $this->photo)) {
+            unlink(__DIR__ . '/../../public/photo' . $this->photo);
+        }
     }
 }
