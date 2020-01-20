@@ -22,21 +22,27 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="/">Accueil<span class="sr-only">(current)</span></a>
                     </li>
+                     {% if not app.user %}
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Inscription</a>
+                        <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
                     </li>
+                         
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Connexion</a>
+                        <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
                     </li>
+                      {% endif %}
+                     {% if app.user %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            username
+                          {{app.user.email}} 
                         </a>
+                        
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Profil</a>
-                            <a class="dropdown-item" href="#">Deconnexion</a>
+                            <a class="dropdown-item" href="#">{{app.user.email}}</a>
+                          <a class="dropdown-item" href="{{ path('app_logout') }}">Deconnexion</a>
                         </div>
                     </li>
+                     {% endif %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="{{ path('admin_salle') }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Admin
