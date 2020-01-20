@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row custyle">
+            <table class="table table-striped custab">
+                <thead>
+                <a href="{{ path('admin_avis_create') }}" class="btn btn-primary btn-xs pull-right mb-4"><b>+</b> Créer un avis</a>
+                <tr>
+                    <th>ID</th>
+                    <th>ID_Membre</th>
+                    <th>ID_salle</th>
+                    <th>Commentaire</th>
+                    <th>Note</th>
+                    <th>date</th>
+                    <th class="text-center">Action</th>
+                </tr>
+                </thead>
+                {% for avi in avis %}
+                    <tr>
+                        <td>{{ avi.id }}</td>
+                        <td>{{ avi.id_membre }}</td>
+                        <td>{{ avi.id_salle }}</td>
+                        <td>{{ avi.commentaire | slice(0, 40) }}...</td>
+                        <td>{{ avi.note }}</td>
+                        <td>{{ avi.date_enregistrement }}</td>
+             
+                        <td class="text-center"><a class='btn btn-info btn-xs' href="{{ path('admin_salle_edit', { id: salle.id }) }}"><i class="far fa-edit"></i> Edit</a> <a href="{{ path('admin_salle_delete', { id: salle.id }) }}" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i> Del</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

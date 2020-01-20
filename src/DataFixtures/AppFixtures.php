@@ -15,7 +15,7 @@ class AppFixtures extends Fixture
     {
         // $product = new Product();
         // $manager->persist($product);
-      
+      /*
     for($i=0; $i<=20; $i++){
         $Salle = new Salle;
         $Salle -> setTitre('Salle'.$i);
@@ -28,7 +28,7 @@ class AppFixtures extends Fixture
         $Salle -> setCapacite(rand(1,100));
         $Salle -> setCapacite(rand(1,100));
         $Salle -> setCategorie(rand(1,5).'Categorie');
-
+        $Salle -> setPhoto(rand(1,5).".jpg");
         $manager -> persist($Salle);// permet de prendre en compte un objet
         $manager ->flush();// enregistre juste le Salle juste pour prendre l'id du Salle apres
 
@@ -42,6 +42,7 @@ class AppFixtures extends Fixture
         $Membre -> setcivilite("Monsieur/Madame");
         $Membre -> setstatut(0);
         $Membre -> setDateEnregistrement(new \DateTime('now'));
+
   
 
         $manager -> persist($Membre);// permet de prendre en compte un objet
@@ -51,7 +52,7 @@ class AppFixtures extends Fixture
         $Produit = new Produit;
         $Produit -> setIdSalle($Salle->getId());
         $Produit -> setDateArrivee(new \DateTime('now'));
-        $Produit -> setDateDepart(new \DateTime('now + '.rand(1,5).'day'));
+        $Produit -> setDateDepart(new \DateTime('now + '.rand(1,5).' day'));
         $Produit -> setPrix(rand(200,5000));
         $Produit -> setEtat(rand(1,2).'ETAT');
 
@@ -88,7 +89,7 @@ class AppFixtures extends Fixture
         $manager -> persist($Commande);
         $manager ->flush();
     }
-          
+          */
     
     }
 }

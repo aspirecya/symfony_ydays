@@ -3,11 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MembreRepository")
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
-class Membre
+class Membre implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -17,96 +20,24 @@ class Membre
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=20)
-     */
-    private $pseudo;
-
-    /**
-     * @ORM\Column(type="string", length=60)
-     */
-    private $mdp;
-
-    /**
-     * @ORM\Column(type="string", length=20)
-     */
-    private $nom;
-
-    /**
-     * @ORM\Column(type="string", length=20)
-     */
-    private $prenom;
-
-    /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="json")
      */
-    private $civilite;
+    private $roles = [];
 
     /**
-     * @ORM\Column(type="integer")
+     * @var string The hashed password
+     * @ORM\Column(type="string")
      */
-    private $statut;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $date_enregistrement;
+    private $password;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getPseudo(): ?string
-    {
-        return $this->pseudo;
-    }
-
-    public function setPseudo(string $pseudo): self
-    {
-        $this->pseudo = $pseudo;
-
-        return $this;
-    }
-
-    public function getMdp(): ?string
-    {
-        return $this->mdp;
-    }
-
-    public function setMdp(string $mdp): self
-    {
-        $this->mdp = $mdp;
-
-        return $this;
-    }
-
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): self
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(string $prenom): self
-    {
-        $this->prenom = $prenom;
-
-        return $this;
     }
 
     public function getEmail(): ?string
@@ -121,39 +52,64 @@ class Membre
         return $this;
     }
 
-    public function getCivilite(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
     {
-        return $this->civilite;
+        return (string) $this->email;
     }
 
-    public function setCivilite(string $civilite): self
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        $this->civilite = $civilite;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }
 
-    public function getStatut(): ?int
+    /**
+     * @see UserInterface
+     */
+    public function getPassword(): string
     {
-        return $this->statut;
+        return (string) $this->password;
     }
 
-    public function setStatut(int $statut): self
+    public function setPassword(string $password): self
     {
-        $this->statut = $statut;
+        $this->password = $password;
 
         return $this;
     }
 
-    public function getDateEnregistrement(): ?\DateTimeInterface
+    /**
+     * @see UserInterface
+     */
+    public function getSalt()
     {
-        return $this->date_enregistrement;
+        // not needed when using the "bcrypt" algorithm in security.yaml
     }
 
-    public function setDateEnregistrement(\DateTimeInterface $date_enregistrement): self
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
     {
-        $this->date_enregistrement = $date_enregistrement;
-
-        return $this;
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }
