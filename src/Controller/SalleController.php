@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Produit;
 use App\Entity\Salle;
 use App\Form\SalleType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,11 +16,11 @@ class SalleController extends AbstractController
      */
     public function index()
     {
-        $repo = $this->getDoctrine()->getRepository(Salle::class);
-        $salles = $repo->findAll();
+        $repo = $this->getDoctrine()->getRepository(Produit::class);
+        $produits = $repo->findAll();
         return $this->render('salle/index.html.twig', [
             'controller_name' => 'SalleController',
-            'salles' => $salles
+            'produits' => $produits
         ]);
     }
 

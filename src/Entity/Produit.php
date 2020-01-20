@@ -17,11 +17,6 @@ class Produit
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_salle;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $date_arrivee;
@@ -40,6 +35,11 @@ class Produit
      * @ORM\Column(type="string", length=255)
      */
     private $etat;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Salle", inversedBy="relatedProducts")
+     */
+    private $salle_id;
 
     public function getId(): ?int
     {
@@ -102,6 +102,18 @@ class Produit
     public function setEtat(string $etat): self
     {
         $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getSalleId(): ?Salle
+    {
+        return $this->salle_id;
+    }
+
+    public function setSalleId(?Salle $salle_id): self
+    {
+        $this->salle_id = $salle_id;
 
         return $this;
     }
