@@ -27,7 +27,7 @@ class ProduitController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Produit::class);
 
         $produits = $repo->findAll();
-        return $this->render('salle/admin/salle_list.html.twig', [
+        return $this->render('produit/admin/produit_list.html.twig', [
             'produits' => $produits,
         ]);
     }
@@ -36,7 +36,7 @@ class ProduitController extends AbstractController
     /**
      * @Route("/produit/admin/create", name="admin_produit_create")
      */
-    public function createSalle(Request $request) {
+    public function createProduit(Request $request) {
         $produit = new Produit();
 
         $form = $this->createForm(ProduitType::class, $produit);

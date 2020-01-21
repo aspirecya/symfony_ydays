@@ -37,9 +37,10 @@ class Produit
     private $etat;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Salle", inversedBy="relatedProducts")
+     * @ORM\Column(type="integer")
      */
     private $salle_id;
+
 
     public function getId(): ?int
     {
@@ -106,15 +107,16 @@ class Produit
         return $this;
     }
 
-    public function getSalleId(): ?Salle
+    public function getSalleId(): ?int
     {
         return $this->salle_id;
     }
 
-    public function setSalleId(?Salle $salle_id): self
+    public function setSalleId(int $salle_id): self
     {
         $this->salle_id = $salle_id;
 
         return $this;
     }
+
 }

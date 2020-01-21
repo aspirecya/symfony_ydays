@@ -65,11 +65,6 @@ class Salle
      */
     private $categorie;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Produit", mappedBy="salle_id")
-     */
-    private $relatedProducts;
-
     public function __construct()
     {
         $this->relatedProducts = new ArrayCollection();
@@ -213,36 +208,5 @@ class Salle
         if(file_exists(__DIR__ . '/../../public/photo' . $this->photo)) {
             unlink(__DIR__ . '/../../public/photo' . $this->photo);
         }
-    }
-
-    /**
-     * @return Collection|Produit[]
-     */
-    public function getRelatedProducts(): Collection
-    {
-        return $this->relatedProducts;
-    }
-
-    public function addRelatedProduct(Produit $relatedProduct): self
-    {
-        if (!$this->relatedProducts->contains($relatedProduct)) {
-            $this->relatedProducts[] = $relatedProduct;
-            $relatedProduct->setSalleId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRelatedProduct(Produit $relatedProduct): self
-    {
-        if ($this->relatedProducts->contains($relatedProduct)) {
-            $this->relatedProducts->removeElement($relatedProduct);
-            // set the owning side to null (unless already changed)
-            if ($relatedProduct->getSalleId() === $this) {
-                $relatedProduct->setSalleId(null);
-            }
-        }
-
-        return $this;
     }
 }
