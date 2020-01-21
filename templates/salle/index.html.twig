@@ -45,10 +45,9 @@
             </div>
 
             <div class="row">
-                <!-- offer 01 -->
+                {% for salle in salles %}
                 <div class="col-sm-12 col-lg-4">
-                    <!-- product card -->
-                    {% for salle in salles %}
+                        <!-- product card -->
                         <div class="product-item bg-light">
                             <div class="card">
                                 <div class="thumb-content">
@@ -76,8 +75,8 @@
                                 </div>
                             </div>
                         </div>
-                    {% endfor %}
                 </div>
+                {% endfor %}
             </div>
         </div>
     </section>
