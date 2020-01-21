@@ -59,55 +59,49 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @Route("/produit/admin/delete/{id}", name="admin_salle_delete")
+     * @Route("/produit/admin/delete/{id}", name="admin_produit_delete")
      */
-    public function deleteSalle($id) {
+    public function deleteProduit($id) {
         $manager = $this->getDoctrine()->getManager();
-        $salle = $manager->find(Salle::class, $id);
+        $produit = $manager->find(Produit::class, $id);
 
 
         try {
-            $manager->remove($salle);
-            $salle->deleteFile();
+            $manager->remove($produit);
             $manager->flush();
         } catch(Exception $e) {
             $this->addFlash('errors', $e->getMessage());
         }
 
-        $this->addFlash('success', 'La produit ' . $id . ' à été effacée.');
-        return $this->redirectToRoute('admin_salle');
+        $this->addFlash('success', 'La produit ' . $id . ' à été effacé.');
+        return $this->redirectToRoute('admin_produit');
     }
 
     /**
-     * @Route("/produit/admin/edit/{id}", name="admin_salle_edit")
+     * @Route("/produit/admin/edit/{id}", name="admin_produit_edit")
      */
-    public function editSalle($id, Request $request) {
+    public function editProduit($id, Request $request) {
         $manager = $this->getDoctrine()->getManager();
-        $salle = $manager->find(Salle::class, $id);
+        $produit = $manager->find(Produit::class, $id);
 
-        $form = $this->createForm(SalleType::class, $salle);
+        $form = $this->createForm(ProduitType::class, $produit);
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
-            $salle = $form->getData();
+            $produit = $form->getData();
 
-            $manager->persist($salle);
-
-            if($salle->getFile()) {
-                $salle->deleteFile();
-                $salle->uploadFile();
-            }
+            $manager->persist($produit);
 
             $manager->flush();
 
-            $this->addFlash('success', 'La produit ' . $id . ' à été editée.');
+            $this->addFlash('success', 'Le produit ' . $id . ' à été edité.');
 
-            return $this->redirectToRoute('admin_salle');
+            return $this->redirectToRoute('admin_produit');
         }
 
-        return $this->render('produit/admin/salle_form.html.twig', [
-            'salleForm' => $form->createView(),
-            'title' => 'Editer une produit'
+        return $this->render('produit/admin/produit_form.html.twig', [
+            'produitForm' => $form->createView(),
+            'title' => 'Editer un produit'
         ]);
     }
 }

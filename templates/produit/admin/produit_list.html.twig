@@ -10,7 +10,7 @@
                     <th>ID</th>
                     <th>Date de début de la réservation</th>
                     <th>Date de fin de la réservation</th>
-                    <th>Salle</th>
+                    {#<th>Salle</th>#}
                     <th>Prix</th>
                     <th>État</th>
                     <th class="text-center">Action</th>
@@ -20,11 +20,11 @@
                     <tr>
                         <td>{{ produit.id }}</td>
                         <td>{{ produit.getDateArrivee() | date('d/m/Y') }}</td>
-                        <td>{{ produit.getDateDepart() | date('d/m/Y') }}...</td>
-                        <td>{{ produit.getSalleId() }}</td>
+                        <td>{{ produit.getDateDepart() | date('d/m/Y') }}</td>
+                        {#<td>{{ produit.getSalleId() }}</td>#}
                         <td>{{ produit.prix }}</td>
                         <td>{{ produit.etat }}</td>
-                        {#<td class="text-center"><a class='btn btn-info btn-xs' href="{{ path('admin_salle_edit', { id: salle.id }) }}"><i class="far fa-edit"></i> Edit</a> <a href="{{ path('admin_salle_delete', { id: salle.id }) }}" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i> Del</a></td>#}
+                        <td class="text-center"><a class='btn btn-info btn-xs' href="{{ path('admin_produit_edit', { id: produit.id }) }}"><i class="far fa-edit"></i> Edit</a> <a href="{{ path('admin_produit_delete', { id: produit.id }) }}" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i> Del</a></td>
                     </tr>
                 {% endfor %}
             </table>
