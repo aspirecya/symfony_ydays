@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProduitController extends AbstractController
 {
     /**
-     * @Route("/produit", name="produit")
+     * @Route("/", name="index")
      */
     public function index()
     {
@@ -21,20 +21,20 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @Route("/produit/admin/", name="admin_produit")
+     * @Route("/admin/produit/", name="admin_produit")
      */
     public function adminProduit() {
         $repo = $this->getDoctrine()->getRepository(Produit::class);
 
         $produits = $repo->findAll();
-        return $this->render('produit/admin/produit_list.html.twig', [
+        return $this->render('admin/produit_list.html.twig', [
             'produits' => $produits,
         ]);
     }
 
 
     /**
-     * @Route("/produit/admin/create", name="admin_produit_create")
+     * @Route("/admin/produit/create", name="admin_produit_create")
      */
     public function createProduit(Request $request) {
         $produit = new Produit();
@@ -52,14 +52,14 @@ class ProduitController extends AbstractController
             return $this->redirectToRoute('admin_produit');
         }
 
-        return $this->render('produit/admin/produit_form.html.twig', [
+        return $this->render('admin/form/produit_form.html.twig', [
             'produitForm' => $form->createView(),
             'title' => 'Créer un produit'
         ]);
     }
 
     /**
-     * @Route("/produit/admin/delete/{id}", name="admin_produit_delete")
+     * @Route("/admin/produit/delete/{id}", name="admin_produit_delete")
      */
     public function deleteProduit($id) {
         $manager = $this->getDoctrine()->getManager();
@@ -78,7 +78,7 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @Route("/produit/admin/edit/{id}", name="admin_produit_edit")
+     * @Route("/admin/produit/edit/{id}", name="admin_produit_edit")
      */
     public function editProduit($id, Request $request) {
         $manager = $this->getDoctrine()->getManager();
@@ -99,7 +99,7 @@ class ProduitController extends AbstractController
             return $this->redirectToRoute('admin_produit');
         }
 
-        return $this->render('produit/admin/produit_form.html.twig', [
+        return $this->render('admin/form/produit_form.html.twig', [
             'produitForm' => $form->createView(),
             'title' => 'Editer un produit'
         ]);

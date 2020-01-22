@@ -19,13 +19,13 @@ class MembreController extends AbstractController
     }
 
       /**
-     * @Route("/membre/admin/", name="admin_membre")
+     * @Route("/admin/membre/", name="admin_membre")
      */
     public function adminMembre() {
         $repo = $this->getDoctrine()->getRepository(Membre::class);
 
         $Membres = $repo->findAll();
-        return $this->render('membre/admin/membre_list.html.twig', [
+        return $this->render('admin/membre_list.html.twig', [
             'membre' => $Membres,
         ]);
     }

@@ -10,34 +10,34 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SalleController extends AbstractController
 {
-    /**
-     * @Route("/", name="index")
-     */
-    public function index()
-    {
-        $repo = $this->getDoctrine()->getRepository(Salle::class);
-        $salles = $repo->findAll();
-        return $this->render('salle/index.html.twig', [
-            'controller_name' => 'SalleController',
-            'salles' => $salles
-        ]);
-    }
+//    /**
+//     * @Route("/salle", name="index")
+//     */
+//    public function index()
+//    {
+//        $repo = $this->getDoctrine()->getRepository(Salle::class);
+//        $salles = $repo->findAll();
+//        return $this->render('salle/index.html.twig', [
+//            'controller_name' => 'SalleController',
+//            'salles' => $salles
+//        ]);
+//    }
 
     /**
-     * @Route("/salle/admin/", name="admin_salle")
+     * @Route("/admin/salle/", name="admin_salle")
      */
     public function adminSalle() {
         $repo = $this->getDoctrine()->getRepository(Salle::class);
 
         $salles = $repo->findAll();
-        return $this->render('salle/admin/salle_list.html.twig', [
+        return $this->render('admin/salle_list.html.twig', [
             'salles' => $salles,
         ]);
     }
 
 
     /**
-     * @Route("/salle/admin/create", name="admin_salle_create")
+     * @Route("/admin/salle/create", name="admin_salle_create")
      */
     public function createSalle(Request $request) {
         $salle = new Salle();
@@ -56,14 +56,14 @@ class SalleController extends AbstractController
             return $this->redirectToRoute('admin_salle');
         }
 
-        return $this->render('salle/admin/salle_form.html.twig', [
+        return $this->render('admin/form/salle_form.html.twig', [
             'salleForm' => $form->createView(),
             'title' => 'Créer une salle'
         ]);
     }
 
     /**
-     * @Route("/salle/admin/delete/{id}", name="admin_salle_delete")
+     * @Route("/admin/salle/delete/{id}", name="admin_salle_delete")
      */
     public function deleteSalle($id) {
         $manager = $this->getDoctrine()->getManager();
@@ -83,7 +83,7 @@ class SalleController extends AbstractController
     }
 
     /**
-     * @Route("/salle/admin/edit/{id}", name="admin_salle_edit")
+     * @Route("/admin/salle/edit/{id}", name="admin_salle_edit")
      */
     public function editSalle($id, Request $request) {
         $manager = $this->getDoctrine()->getManager();
@@ -109,7 +109,7 @@ class SalleController extends AbstractController
             return $this->redirectToRoute('admin_salle');
         }
 
-        return $this->render('salle/admin/salle_form.html.twig', [
+        return $this->render('admin/form/salle_form.html.twig', [
             'salleForm' => $form->createView(),
             'title' => 'Editer une salle'
         ]);

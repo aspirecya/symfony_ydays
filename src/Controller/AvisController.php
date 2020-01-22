@@ -44,14 +44,14 @@ class AvisController extends AbstractController
 
 
     /**
-     * @Route("/avis/admin/", name="admin_avis")
+     * @Route("/admin/avis/", name="admin_avis")
      */
     public function adminAvis()
     {
         $repo = $this->getDoctrine()->getRepository(Avis::class);
 
         $Avis = $repo->findAll();
-        return $this->render('avis/admin/avis_list.html.twig', [
+        return $this->render('admin/avis_list.html.twig', [
             'avis' => $Avis,
         ]);
     }
@@ -59,7 +59,7 @@ class AvisController extends AbstractController
 
 
     /**
-     * @Route("/avis/admin/delete/{id}", name="admin_avis_delete")
+     * @Route("/admin/avis/delete/{id}", name="admin_avis_delete")
      */
     public function deleteAvis($id)
     {
@@ -76,6 +76,6 @@ class AvisController extends AbstractController
         }
 
         $this->addFlash('success', 'L avis ' . $id . ' à été effacée.');
-        return $this->redirectToRoute('admin_salle');
+        return $this->redirectToRoute('admin_avis');
     }
 }
