@@ -30,25 +30,5 @@ class MembreController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/membre/create", name="membre_create")
-     */
-    public function MembreCreate(Request $request){
-
-
-        $Membre = new Membre;
-      
-                $form =$this ->createForm(MembreType::class,$Membre);
-                $form ->handleRequest($request);
-    
-                if($form ->isSubmitted() && $form ->isValid()){
-                    $manager = $this ->getDoctrine() ->getManager();
-                    $manager ->persist($Membre);
-                    $manager -> flush();
-                    $this ->addFLash('sucess','Votre compte a bien ete creer');
-                    $this->redirectToRoute('home');
-                }
-                return $this -> render('membre/membre_form.html.twig',array('userForm' =>$form ->createView()));
-            
-    }
+   
 }

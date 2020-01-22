@@ -34,6 +34,103 @@ class Membre implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $nom;
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $pseudo;
+
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $prenom;
+   /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $civilite;
+   /**
+     * @ORM\Column(type="integer")
+     */
+    private $status;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date_enregistrement;
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+    
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(int $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+    
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+    public function getCivilite(): ?string
+    {
+        return $this->civilite;
+    }
+
+    public function setCivilite(string $civilite): self
+    {
+        $this->civilite = $civilite;
+
+        return $this;
+    }
+
+   
+    public function getDateEnregistrement(): ?\DateTimeInterface
+    {
+        return $this->date_enregistrement;
+    }
+
+    public function setDateEnregistrement(\DateTimeInterface $date_enregistrement): self
+    {
+        $this->date_enregistrement = $date_enregistrement;
+
+        return $this;
+    }
+   
 
     public function getId(): ?int
     {

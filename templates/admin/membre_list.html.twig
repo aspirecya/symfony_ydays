@@ -5,31 +5,33 @@
         <div class="row custyle">
             <table class="table table-striped custab">
                 <thead>
-                <a href="{{ path('admin_salle_create') }}" class="btn btn-primary btn-xs pull-right mb-4"><b>+</b> Créer une salle</a>
+                <a href="{{ path('app_register') }}" class="btn btn-primary btn-xs pull-right mb-4"><b>+</b> Créer un membre</a>
                 <tr>
                     <th>ID</th>
-                    <th>Titre</th>
-                    <th>Description</th>
-                    <th>Pays</th>
-                    <th>Ville</th>
-                    <th>Adresse</th>
-                    <th>Code postal</th>
-                    <th>Capacité</th>
-                    <th>Catégorie</th>
+                    <th>email</th>
+                    <th>roles</th>
+                    <th>password</th>
+                    <th>nom</th>
+                    <th>pseudo</th>
+                    <th>prenom</th>
+                    <th>civilite</th>
+                    <th>status</th>
+                     <th>date_enregistrement</th>
                     <th class="text-center">Action</th>
                 </tr>
                 </thead>
-                {% for salle in salles %}
+                {% for membrex in membre %}
                     <tr>
-                        <td>{{ salle.id }}</td>
-                        <td>{{ salle.titre }}</td>
-                        <td>{{ salle.description | slice(0, 40) }}...</td>
-                        <td>{{ salle.pays }}</td>
-                        <td>{{ salle.ville }}</td>
-                        <td>{{ salle.adresse }}</td>
-                        <td>{{ salle.cp }}</td>
-                        <td>{{ salle.capacite }}</td>
-                        <td>{{ salle.categorie }}</td>
+                        <td>{{ membrex.id }}</td>
+                        <td>{{ membrex.email }}</td>
+                        <td>{{ membrex.roles }}...</td>
+                        <td>{{ membrex.password }}</td>
+                        <td>{{ membrex.nom }}</td>
+                        <td>{{ membrex.pseudo }}</td>
+                        <td>{{ membrex.prenom }}</td>
+                        <td>{{ membrex.civilite }}</td>
+                        <td>{{ membrex.status }}</td>
+                         <td>{{ membrex.date_enregistrement }}</td>
                         <td class="text-center"><a class='btn btn-info btn-xs' href="{{ path('admin_salle_edit', { id: salle.id }) }}"><i class="far fa-edit"></i> Edit</a> <a href="{{ path('admin_salle_delete', { id: salle.id }) }}" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i> Del</a></td>
                     </tr>
                 {% endfor %}
