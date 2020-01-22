@@ -22,19 +22,14 @@ class SalleRepository extends ServiceEntityRepository
     // /**
     //  * @return Salle[] Returns an array of Salle objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findById($value)
     {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
+        return $this->createQueryBuilder('salleById')
+                ->select()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Salle

@@ -51,7 +51,7 @@ class AvisController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Avis::class);
 
         $Avis = $repo->findAll();
-        return $this->render('avis/admin/avis_list.html.twig', [
+        return $this->render('admin/avis_list.html.twig', [
             'avis' => $Avis,
         ]);
     }
@@ -76,6 +76,6 @@ class AvisController extends AbstractController
         }
 
         $this->addFlash('success', 'L avis ' . $id . ' à été effacée.');
-        return $this->redirectToRoute('admin_salle');
+        return $this->redirectToRoute('admin_avis');
     }
 }

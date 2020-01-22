@@ -25,7 +25,7 @@ class MembreController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Membre::class);
 
         $Membres = $repo->findAll();
-        return $this->render('membre/admin/membre_list.html.twig', [
+        return $this->render('admin/membre_list.html.twig', [
             'membre' => $Membres,
         ]);
     }

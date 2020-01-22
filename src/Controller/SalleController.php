@@ -10,18 +10,18 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SalleController extends AbstractController
 {
-    /**
-     * @Route("/", name="index")
-     */
-    public function index()
-    {
-        $repo = $this->getDoctrine()->getRepository(Salle::class);
-        $salles = $repo->findAll();
-        return $this->render('salle/index.html.twig', [
-            'controller_name' => 'SalleController',
-            'salles' => $salles
-        ]);
-    }
+//    /**
+//     * @Route("/salle", name="index")
+//     */
+//    public function index()
+//    {
+//        $repo = $this->getDoctrine()->getRepository(Salle::class);
+//        $salles = $repo->findAll();
+//        return $this->render('salle/index.html.twig', [
+//            'controller_name' => 'SalleController',
+//            'salles' => $salles
+//        ]);
+//    }
 
     /**
      * @Route("/salle/admin/", name="admin_salle")
@@ -30,7 +30,7 @@ class SalleController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Salle::class);
 
         $salles = $repo->findAll();
-        return $this->render('salle/admin/salle_list.html.twig', [
+        return $this->render('admin/salle_list.html.twig', [
             'salles' => $salles,
         ]);
     }
@@ -56,7 +56,7 @@ class SalleController extends AbstractController
             return $this->redirectToRoute('admin_salle');
         }
 
-        return $this->render('salle/admin/salle_form.html.twig', [
+        return $this->render('admin/form/salle_form.html.twig', [
             'salleForm' => $form->createView(),
             'title' => 'Créer une salle'
         ]);
@@ -109,7 +109,7 @@ class SalleController extends AbstractController
             return $this->redirectToRoute('admin_salle');
         }
 
-        return $this->render('salle/admin/salle_form.html.twig', [
+        return $this->render('admin/form/salle_form.html.twig', [
             'salleForm' => $form->createView(),
             'title' => 'Editer une salle'
         ]);

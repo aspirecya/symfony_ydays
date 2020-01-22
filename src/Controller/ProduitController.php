@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProduitController extends AbstractController
 {
     /**
-     * @Route("/produit", name="produit")
+     * @Route("/", name="index")
      */
     public function index()
     {
@@ -27,7 +27,7 @@ class ProduitController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Produit::class);
 
         $produits = $repo->findAll();
-        return $this->render('produit/admin/produit_list.html.twig', [
+        return $this->render('admin/produit_list.html.twig', [
             'produits' => $produits,
         ]);
     }
@@ -52,7 +52,7 @@ class ProduitController extends AbstractController
             return $this->redirectToRoute('admin_produit');
         }
 
-        return $this->render('produit/admin/produit_form.html.twig', [
+        return $this->render('admin/form/produit_form.html.twig', [
             'produitForm' => $form->createView(),
             'title' => 'Créer un produit'
         ]);
@@ -99,7 +99,7 @@ class ProduitController extends AbstractController
             return $this->redirectToRoute('admin_produit');
         }
 
-        return $this->render('produit/admin/produit_form.html.twig', [
+        return $this->render('admin/form/produit_form.html.twig', [
             'produitForm' => $form->createView(),
             'title' => 'Editer un produit'
         ]);
