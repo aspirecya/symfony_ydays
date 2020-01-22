@@ -21,7 +21,7 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @Route("/produit/admin/", name="admin_produit")
+     * @Route("/admin/produit/", name="admin_produit")
      */
     public function adminProduit() {
         $repo = $this->getDoctrine()->getRepository(Produit::class);
@@ -34,7 +34,7 @@ class ProduitController extends AbstractController
 
 
     /**
-     * @Route("/produit/admin/create", name="admin_produit_create")
+     * @Route("/admin/produit/create", name="admin_produit_create")
      */
     public function createProduit(Request $request) {
         $produit = new Produit();
@@ -59,7 +59,7 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @Route("/produit/admin/delete/{id}", name="admin_produit_delete")
+     * @Route("/admin/produit/delete/{id}", name="admin_produit_delete")
      */
     public function deleteProduit($id) {
         $manager = $this->getDoctrine()->getManager();
@@ -78,7 +78,7 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @Route("/produit/admin/edit/{id}", name="admin_produit_edit")
+     * @Route("/admin/produit/edit/{id}", name="admin_produit_edit")
      */
     public function editProduit($id, Request $request) {
         $manager = $this->getDoctrine()->getManager();

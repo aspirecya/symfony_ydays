@@ -44,7 +44,7 @@ class AvisController extends AbstractController
 
 
     /**
-     * @Route("/avis/admin/", name="admin_avis")
+     * @Route("/admin/avis/", name="admin_avis")
      */
     public function adminAvis()
     {
@@ -59,7 +59,7 @@ class AvisController extends AbstractController
 
 
     /**
-     * @Route("/avis/admin/delete/{id}", name="admin_avis_delete")
+     * @Route("/admin/avis/delete/{id}", name="admin_avis_delete")
      */
     public function deleteAvis($id)
     {
