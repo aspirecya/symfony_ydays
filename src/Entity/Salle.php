@@ -65,10 +65,7 @@ class Salle
      */
     private $categorie;
 
-    public function __construct()
-    {
-        $this->relatedProducts = new ArrayCollection();
-    }
+   
 
     public function getId(): ?int
     {
