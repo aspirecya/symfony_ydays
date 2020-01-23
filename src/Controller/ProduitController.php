@@ -10,15 +10,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class ProduitController extends AbstractController
 {
-    /**
-     * @Route("/", name="index")
-     */
-    public function index()
-    {
-        return $this->render('produit/index.html.twig', [
-            'controller_name' => 'ProduitController',
-        ]);
-    }
 
     /**
      * @Route("/admin/produit/", name="admin_produit")
