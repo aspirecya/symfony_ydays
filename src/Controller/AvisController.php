@@ -7,7 +7,7 @@ use App\Form\AvisType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class AvisController extends AbstractController
 {
     /**
@@ -45,6 +45,7 @@ class AvisController extends AbstractController
 
     /**
      * @Route("/admin/avis/", name="admin_avis")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function adminAvis()
     {
@@ -60,6 +61,7 @@ class AvisController extends AbstractController
 
     /**
      * @Route("/admin/avis/delete/{id}", name="admin_avis_delete")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function deleteAvis($id)
     {

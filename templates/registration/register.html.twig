@@ -17,5 +17,6 @@
           {{ form_row(registrationForm.agreeTerms) }}
 
         <button class="btn btn-lg btn-primary">Register</button>
-    {{ form_end(registrationForm) }}
+    {# don't render unrendered fields #}
+{{ form_end(registrationForm) }}
 {% endblock %}

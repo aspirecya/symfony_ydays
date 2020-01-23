@@ -6,6 +6,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Membre;
 use App\Form\MembreType;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class MembreController extends AbstractController
 {
     /**
@@ -20,6 +21,7 @@ class MembreController extends AbstractController
 
       /**
      * @Route("/admin/membre/", name="admin_membre")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function adminMembre() {
         $repo = $this->getDoctrine()->getRepository(Membre::class);

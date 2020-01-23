@@ -22,7 +22,7 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="/">Accueil<span class="sr-only">(current)</span></a>
                     </li>
-                     {% if not app.user %}
+                     {% if not is_granted('ROLE_USER') %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
                     </li>
@@ -31,7 +31,7 @@
                         <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
                     </li>
                       {% endif %}
-                     {% if app.user %}
+                     {% if is_granted('ROLE_USER') %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           {{app.user.email}} 
@@ -43,14 +43,17 @@
                         </div>
                     </li>
                      {% endif %}
+                        {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="{{ path('admin_salle') }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Admin
                         </a>
+                    
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ path('admin_salle') }}">Gestion des salles</a>
-                            <a class="dropdown-item" href="{{ path('admin_membre') }}">admin_membre</a>
+                            <a class="dropdown-item" href="{{ path('admin_membre') }}">Gestion des membres</a>
                         </div>
+                         {% endif %}
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">

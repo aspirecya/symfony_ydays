@@ -7,7 +7,7 @@ use App\Form\ProduitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class ProduitController extends AbstractController
 {
     /**
@@ -22,6 +22,7 @@ class ProduitController extends AbstractController
 
     /**
      * @Route("/admin/produit/", name="admin_produit")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function adminProduit() {
         $repo = $this->getDoctrine()->getRepository(Produit::class);
@@ -35,6 +36,7 @@ class ProduitController extends AbstractController
 
     /**
      * @Route("/admin/produit/create", name="admin_produit_create")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function createProduit(Request $request) {
         $produit = new Produit();
@@ -60,6 +62,7 @@ class ProduitController extends AbstractController
 
     /**
      * @Route("/admin/produit/delete/{id}", name="admin_produit_delete")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function deleteProduit($id) {
         $manager = $this->getDoctrine()->getManager();
@@ -79,6 +82,7 @@ class ProduitController extends AbstractController
 
     /**
      * @Route("/admin/produit/edit/{id}", name="admin_produit_edit")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function editProduit($id, Request $request) {
         $manager = $this->getDoctrine()->getManager();

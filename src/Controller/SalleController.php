@@ -7,7 +7,7 @@ use App\Form\SalleType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class SalleController extends AbstractController
 {
 //    /**
@@ -25,6 +25,7 @@ class SalleController extends AbstractController
 
     /**
      * @Route("/admin/salle/", name="admin_salle")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function adminSalle() {
         $repo = $this->getDoctrine()->getRepository(Salle::class);
@@ -38,6 +39,7 @@ class SalleController extends AbstractController
 
     /**
      * @Route("/admin/salle/create", name="admin_salle_create")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function createSalle(Request $request) {
         $salle = new Salle();
@@ -64,6 +66,7 @@ class SalleController extends AbstractController
 
     /**
      * @Route("/admin/salle/delete/{id}", name="admin_salle_delete")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function deleteSalle($id) {
         $manager = $this->getDoctrine()->getManager();
@@ -84,6 +87,7 @@ class SalleController extends AbstractController
 
     /**
      * @Route("/admin/salle/edit/{id}", name="admin_salle_edit")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function editSalle($id, Request $request) {
         $manager = $this->getDoctrine()->getManager();

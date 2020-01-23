@@ -14,6 +14,9 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Validator\Constraints as Assert;
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -25,10 +28,12 @@ class RegistrationFormType extends AbstractType
             ->add("civilite")
             ->add('email')
             ->add('status')
+            ->add('roles',new Assert\Json([
+                'message' => 'ROLE_USER',
+            ]))
             ->add('date_enregistrement', DateType::class, [
                 'data' => new \DateTime("now"),
                 'html5' => false,
-                'disabled'=> true
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
