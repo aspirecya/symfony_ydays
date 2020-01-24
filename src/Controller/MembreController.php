@@ -34,16 +34,16 @@ class MembreController extends AbstractController
     public function adminMembre() {
         $repo = $this->getDoctrine()->getRepository(Membre::class);
 
-        $Membres = $repo->findAll();
+        $membres = $repo->findAll();
         return $this->render('admin/membre_list.html.twig', [
-            'membre' => $Membres,
+            'membres' => $membres,
         ]);
     }
 
 
 
     /**
-     * @Route("membre/edit", name="Membre_edit")
+     * @Route("membre/edit", name="membre_edit")
      */
     public function editMembre(UserPasswordEncoderInterface $passwordEncoder,Request $request) {
         $manager = $this->getDoctrine()->getManager();

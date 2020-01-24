@@ -1,39 +1,72 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Gestion des produits{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <script src="{{ asset('js/chart.min.js') }}"></script>
+    <script src="{{ asset('js/bs-init.js') }}"></script>
+    <script src="{{ asset('js/theme.js') }}"></script>
+{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="row custyle">
-            <table class="table table-striped custab">
-                <thead>
-                <a href="{{ path('app_register') }}" class="btn btn-primary btn-xs pull-right mb-4"><b>+</b> Créer un membre</a>
-                <tr>
-                    <th>ID</th>
-                    <th>email</th>
-                    <th>password</th>
-                    <th>nom</th>
-                    <th>pseudo</th>
-                    <th>prenom</th>
-                    <th>civilite</th>
-                    <th>status</th>
-                     <th>date_enregistrement</th>
-                    <th class="text-center">Action</th>
-                </tr>
-                </thead>
-                {% for membrex in membre %}
-                    <tr>
-                        <td>{{ membrex.id }}</td>
-                        <td>{{ membrex.email }}</td>
-                        <td>{{ membrex.password }}</td>
-                        <td>{{ membrex.nom }}</td>
-                        <td>{{ membrex.pseudo }}</td>
-                        <td>{{ membrex.prenom }}</td>
-                        <td>{{ membrex.civilite }}</td>
-                        <td>{{ membrex.status }}</td>
-                         <td>{{ membrex.date_enregistrement }}</td>
-                        <td class="text-center"><a class='btn btn-info btn-xs' href="{{ path('admin_salle_edit', { id: salle.id }) }}"><i class="far fa-edit"></i> Edit</a> <a href="{{ path('admin_salle_delete', { id: salle.id }) }}" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i> Del</a></td>
-                    </tr>
-                {% endfor %}
-            </table>
+    <div id="wrapper">
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <div class="container-fluid">
+                    <h3 class="text-dark mb-4">Gestion des membres LokiSalle</h3>
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 font-weight-bold">Membres inscrits</p>
+                        </div>
+                        <div class="card-body">
+                            <a href="{{ path('app_register') }}" class="btn btn-primary btn-xs pull-right mb-4"><b>+</b> Créer un membre</a>
+                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                <table class="table dataTable my-0" id="dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th><strong>ID</strong></th>
+                                            <th><strong>Adresse e-mail</strong></th>
+                                            <th><strong>pseudo</strong></th>
+                                            <th><strong>Civilité</strong></th>
+                                            <th><strong>Nom</strong></th>
+                                            <th><strong>Prénom</strong></th>
+                                            <th><strong>Date d'inscription</strong></th>
+                                            {#<th class="text-center"><strong>Action</strong></th>#}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for membre in membres %}
+                                            <tr>
+                                                <td>{{ membre.id }}</td>
+                                                <td>{{ membre.email }}</td>
+                                                <td>{{ membre.nom }}</td>
+                                                <td>{{ membre.pseudo }}</td>
+                                                <td>{{ membre.prenom }}</td>
+                                                <td>{{ membre.civilite }}</td>
+                                                <td>{{ membre.getDateEnregistrement | date('d/m/Y') }}</td>
+                                                {#<td class="text-center"><a class='btn btn-info btn-xs' href="{{ path('admin_salle_edit', { id: membre.id }) }}"><i class="far fa-edit"></i> Edit</a> <a href="{{ path('admin_salle_delete', { id: salle.id }) }}" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i> Del</a></td>#}
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th><strong>ID</strong></th>
+                                            <th><strong>Adresse e-mail</strong></th>
+                                            <th><strong>pseudo</strong></th>
+                                            <th><strong>Civilité</strong></th>
+                                            <th><strong>Nom</strong></th>
+                                            <th><strong>Prénom</strong></th>
+                                            <th><strong>Date d'inscription</strong></th>
+                                            {#<th class="text-center"><strong>Action</strong></th>#}
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
