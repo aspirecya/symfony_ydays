@@ -19,27 +19,13 @@ class SalleRepository extends ServiceEntityRepository
         parent::__construct($registry, Salle::class);
     }
 
-    // /**
-    //  * @return Salle[] Returns an array of Salle objects
-    //  */
-
-    public function findById($value)
-    {
-        return $this->createQueryBuilder('salleById')
-                ->select()
-        ;
+    public function findCategories() {
+        return $this->createQueryBuilder('categories')
+            -> select('s.categorie')
+            -> distinct(true)
+            -> from(Salle::class, 's')
+            -> orderBy('s.categorie', 'ASC')
+            -> getQuery()
+            -> getResult();
     }
-
-
-    /*
-    public function findOneBySomeField($value): ?Salle
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

@@ -158,6 +158,8 @@ typings/
 # dotenv environment variables file
 .env
 .env.test
+.env.local
+.env.staging
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -345,11 +347,11 @@ GitHub.sublime-settings
 # When using Gradle or Maven with auto-import, you should exclude module files,
 # since they will be recreated, and may cause churn.  Uncomment if using
 # auto-import.
-# .idea/modules.xml
-# .idea/*.iml
-# .idea/modules
-# *.iml
-# *.ipr
+.idea/modules.xml
+.idea/*.iml
+.idea/modules
+*.iml
+*.ipr
 
 # CMake
 

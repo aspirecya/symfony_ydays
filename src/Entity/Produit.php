@@ -17,12 +17,12 @@ class Produit
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $date_arrivee;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $date_depart;
 
@@ -37,26 +37,15 @@ class Produit
     private $etat;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Salle", inversedBy="produits")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $salle_id;
+    private $salle;
 
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdSalle(): ?int
-    {
-        return $this->id_salle;
-    }
-
-    public function setIdSalle(int $id_salle): self
-    {
-        $this->id_salle = $id_salle;
-
-        return $this;
     }
 
     public function getDateArrivee(): ?\DateTimeInterface
@@ -107,14 +96,14 @@ class Produit
         return $this;
     }
 
-    public function getSalleId(): ?int
+    public function getSalle(): ?Salle
     {
-        return $this->salle_id;
+        return $this->salle;
     }
 
-    public function setSalleId(int $salle_id): self
+    public function setSalle(?Salle $salle): self
     {
-        $this->salle_id = $salle_id;
+        $this->salle = $salle;
 
         return $this;
     }

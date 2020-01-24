@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Salle;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,7 +23,13 @@ class SalleType extends AbstractType
             ->add('adresse')
             ->add('cp')
             ->add('capacite')
-            ->add('categorie')
+            ->add('categorie', ChoiceType::class, [
+                'choices'  => [
+                    "Réunion" => "Réunion",
+                    "Bureau" =>"Bureau",
+                    "Formation" => "Formation",
+                ],
+            ])
             ->add('valider', SubmitType::class);
 
         ;

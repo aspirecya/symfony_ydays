@@ -51,10 +51,6 @@ class Membre implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $civilite;
-   /**
-     * @ORM\Column(type="integer")
-     */
-    private $status;
 
     /**
      * @ORM\Column(type="datetime")
@@ -76,17 +72,6 @@ class Membre implements UserInterface
     public function getNom(): ?string
     {
         return $this->nom;
-    }
-    public function getStatus(): ?int
-    {
-        return $this->status;
-    }
-
-    public function setStatus(int $status): self
-    {
-        $this->status = $status;
-
-        return $this;
     }
     public function setNom(string $nom): self
     {

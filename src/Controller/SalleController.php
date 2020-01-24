@@ -10,19 +10,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class SalleController extends AbstractController
 {
-//    /**
-//     * @Route("/salle", name="index")
-//     */
-//    public function index()
-//    {
-//        $repo = $this->getDoctrine()->getRepository(Salle::class);
-//        $salles = $repo->findAll();
-//        return $this->render('salle/index.html.twig', [
-//            'controller_name' => 'SalleController',
-//            'salles' => $salles
-//        ]);
-//    }
-
     /**
      * @Route("/admin/salle/", name="admin_salle")
      * @IsGranted("ROLE_ADMIN")
@@ -58,7 +45,7 @@ class SalleController extends AbstractController
             return $this->redirectToRoute('admin_salle');
         }
 
-        return $this->render('admin/form/salle_form.html.twig', [
+        return $this->render('admin/forms/salle_form.html.twig', [
             'salleForm' => $form->createView(),
             'title' => 'Créer une salle'
         ]);
@@ -113,7 +100,7 @@ class SalleController extends AbstractController
             return $this->redirectToRoute('admin_salle');
         }
 
-        return $this->render('admin/form/salle_form.html.twig', [
+        return $this->render('admin/forms/salle_form.html.twig', [
             'salleForm' => $form->createView(),
             'title' => 'Editer une salle'
         ]);

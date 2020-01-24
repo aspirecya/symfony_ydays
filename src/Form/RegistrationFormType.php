@@ -6,6 +6,7 @@ use App\Entity\Membre;
 use DateTime;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,44 +23,55 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add("pseudo")
-            ->add("nom")
-            ->add("prenom")
-            ->add("civilite")
-            ->add('email')
-            ->add('status')
-            ->add('roles',new Assert\Json([
-                'message' => 'ROLE_USER',
-            ]))
+            ->add("civilite", ChoiceType::class, [
+                'label' => false,
+                'choices'  => [
+                    'Monsieur' => "Monsieur",
+                    'Madame' => "Madame",
+                ],
+            ])
+            ->add("nom", null, [
+                'label' => false,
+            ])
+            ->add("prenom", null, [
+                'label' => false,
+            ])
+            ->add("pseudo", null, [
+                'label' => false,
+            ])
+            ->add('email', null, [
+                'label' => false,
+            ])
             ->add('date_enregistrement', DateType::class, [
                 'data' => new \DateTime("now"),
                 'html5' => false,
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
+                'label' => "J'accepte les conditions générales d'utilisation (CGU).",
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Vous devez accepter les conditions générales d\'utilisation pour vous inscrire.',
                     ]),
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
+                'label' => false,
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Merci d\'entrer un mot de passe.',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'Votre mot de passe doit être composé de {{ limit }} caractères.',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                 ],
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

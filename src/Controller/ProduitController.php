@@ -45,7 +45,7 @@ class ProduitController extends AbstractController
             return $this->redirectToRoute('admin_produit');
         }
 
-        return $this->render('admin/form/produit_form.html.twig', [
+        return $this->render('admin/forms/produit_form.html.twig', [
             'produitForm' => $form->createView(),
             'title' => 'Créer un produit'
         ]);
@@ -94,7 +94,7 @@ class ProduitController extends AbstractController
             return $this->redirectToRoute('admin_produit');
         }
 
-        return $this->render('admin/form/produit_form.html.twig', [
+        return $this->render('admin/forms/produit_form.html.twig', [
             'produitForm' => $form->createView(),
             'title' => 'Editer un produit'
         ]);

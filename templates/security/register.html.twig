@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/css/registration_form.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/styles.css') }}">
+{% endblock %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <div class="register-photo">
+        <div class="form-container">
+            <div class="image-holder"></div>
+            {{ form_start(registrationForm) }}
+                <h2 class="text-center"><strong>Créer</strong> un compte.</h2></br>
+                <div class="form-group">{{ form_row(registrationForm.pseudo, {'attr': {'placeholder': 'Pseudo'}}) }}</div>
+                <div class="form-group">{{ form_row(registrationForm.email, {'attr': {'placeholder': 'E-mail'}}) }}</div>
+                <div class="form-group">{{ form_row(registrationForm.plainPassword, {'attr': {'placeholder': 'Mot de passe'}}) }}</div>
+                </br><h2>Informations personnelles</h2>
+                <div class="form-group">{{ form_row(registrationForm.civilite) }}</div>
+                <div class="form-group">{{ form_row(registrationForm.nom, {'attr': {'placeholder': 'Nom'}}) }}</div>
+                <div class="form-group">{{ form_row(registrationForm.prenom, {'attr': {'placeholder': 'Prenom'}}) }}</div>
+                <div style="display:none">{{ form_row(registrationForm.date_enregistrement) }}</div>
+            <div class="form-group">
+                    <div class="form-check"><label class="form-check-label">{{ form_row(registrationForm.agreeTerms) }}</label></div>
+                </div>
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Inscription</button></div><a class="already" href="{{ path('app_login') }}">Vous avez déjà un compte? Cliquez ici pour vous connecter.</a>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
+{% endblock %}

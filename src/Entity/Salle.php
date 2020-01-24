@@ -65,6 +65,16 @@ class Salle
      */
     private $categorie;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Produit", mappedBy="salle", cascade={"persist", "remove"})
+     */
+    private $produits;
+
+    public function __construct()
+    {
+        $this->produits = new ArrayCollection();
+    }
+
    
 
     public function getId(): ?int
@@ -206,4 +216,43 @@ class Salle
             unlink(__DIR__ . '/../../public/photo' . $this->photo);
         }
     }
+
+    /**
+     * @return Collection|Produit[]
+     */
+    public function getProduits(): Collection
+    {
+        return $this->produits;
+    }
+
+    public function addProduit(Produit $produit): self
+    {
+        if (!$this->produits->contains($produit)) {
+            $this->produits[] = $produit;
+            $produit->setSalle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduit(Produit $produit): self
+    {
+        if ($this->produits->contains($produit)) {
+            $this->produits->removeElement($produit);
+            // set the owning side to null (unless already changed)
+            if ($produit->getSalle() === $this) {
+                $produit->setSalle(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        // TODO: Implement __toString() method.
+        return $this->titre . " (ID: " . $this->id . ")";
+    }
+
+
 }
