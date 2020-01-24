@@ -28,4 +28,12 @@ class SalleRepository extends ServiceEntityRepository
             -> getQuery()
             -> getResult();
     }
+
+    public function countSalles()
+    {
+        return $this->createQueryBuilder('t')
+            ->select('count(t.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }
