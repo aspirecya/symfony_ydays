@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/css/registration_form.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/styles.css') }}">
+{% endblock %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <div class="register-photo">
+        <div class="form-container">
+            <div class="image-holder"></div>
+            {{ form_start(MembreForm) }}
+                <h2 class="text-center"><strong>Edit</strong></h2></br>
+                <div class="form-group">{{ form_row(MembreForm.pseudo, {'attr': {'placeholder': 'Pseudo'}}) }}</div>
+                <div class="form-group">{{ form_row(MembreForm.email, {'attr': {'placeholder': 'E-mail'}}) }}</div>
+                <div class="form-group">{{ form_row(MembreForm.plainPassword, {'attr': {'placeholder': 'Mot de passe'}}) }}</div>
+                </br><h2>Informations personnelles</h2>
+                <div class="form-group">{{ form_row(MembreForm.civilite) }}</div>
+                <div class="form-group">{{ form_row(MembreForm.nom, {'attr': {'placeholder': 'Nom'}}) }}</div>
+                <div class="form-group">{{ form_row(MembreForm.prenom, {'attr': {'placeholder': 'Prenom'}}) }}</div>
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Enregistrer</button></div>
+            {{ form_end(MembreForm) }}
+        </div>
+    </div>
+{% endblock %}
