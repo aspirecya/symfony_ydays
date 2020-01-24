@@ -205,15 +205,15 @@ class Salle
     {
         $name = $this->file->getClientOriginalName();
         $new_name = 'photo_' . time() . '_' . rand(1, 9999) . '_' . $name;
-        $dirPhoto = __DIR__ . '/../../public/photo/';
+        $dirPhoto = __DIR__ . '/../../public/images/salles';
         $this->file->move($dirPhoto, $new_name);
         $this->photo = $new_name;
     }
 
     public function deleteFile()
     {
-        if(file_exists(__DIR__ . '/../../public/photo' . $this->photo)) {
-            unlink(__DIR__ . '/../../public/photo' . $this->photo);
+        if(file_exists(__DIR__ . '/../../public/images/salles' . $this->photo)) {
+            unlink(__DIR__ . '/../../public/images/salles' . $this->photo);
         }
     }
 
