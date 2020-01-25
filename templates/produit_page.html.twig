@@ -4,6 +4,10 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 {% endblock %}
 
+{% block title %}
+    {{ produit.salle.titre }} - LokiSalle
+{% endblock %}
+
 {% block body %}
     {#{{ dump(produit.salle.avis) }}#}
     <section class="section bg-gray">
