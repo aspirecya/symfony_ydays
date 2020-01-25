@@ -49,13 +49,13 @@
                             <div class="product-item bg-light">
                                 <div class="card">
                                     <div class="thumb-content">
-                                        <a href="">
-                                            <img class="card-img-top img-fluid" src="{{ asset('/photo/' ~ produit.salle.photo) }}" alt="Card image cap">
+                                        <a href="{{ path('single_produit_page', { 'id': produit.id }) }}">
+                                            <img class="card-img-top img-fluid" src="{{ asset('/images/salles/' ~ produit.salle.photo) }}" alt="Card image cap">
                                         </a>
                                     </div>
 
                                     <div class="card-body">
-                                        <h4 class="card-title"><a href="">{{ produit.salle.titre }}</a></h4><span class="price">{{ produit.prix }}€</span>
+                                        <h4 class="card-title"><a href="">{{ produit.salle.titre }}</a></h4><span class="price">{{ produit.prix | number_format(2, '.', ',') }} €</span>
                                         <ul class="list-inline product-meta">
                                             <li class="list-inline-item">
                                                 <a href=""><i class="fa fa-folder-open-o"></i> {{ produit.salle.categorie }}</a>

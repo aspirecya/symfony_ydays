@@ -41,7 +41,7 @@
                                                 <td>{{ produit.getDateArrivee() | date('d/m/Y') }}</td>
                                                 <td>{{ produit.getDateDepart() | date('d/m/Y') }}</td>
                                                 <td>{{ produit.getSalle() }}</td>
-                                                <td>{{ produit.prix }}</td>
+                                                <td>{{ produit.prix | number_format(2, '.', ',') }} €</td>
                                                 <td>{{ produit.etat }}</td>
                                                 <td class="text-center"><a class='btn btn-info btn-xs' href="{{ path('admin_produit_edit', { id: produit.id }) }}"><i class="far fa-edit"></i> Edit</a> <a href="{{ path('admin_produit_delete', { id: produit.id }) }}" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i> Del</a></td>
                                             </tr>

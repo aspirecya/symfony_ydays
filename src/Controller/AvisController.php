@@ -23,23 +23,25 @@ class AvisController extends AbstractController
     /**
      * @Route("/avis/create", name="avis_create")
      */
-    public function AvisCreate(Request $request)
+    public function avisCreate(Request $request)
     {
 
 
-        $Avis = new Avis;
+        $avis = new Avis;
 
-        $form = $this->createForm(AvisType::class, $Avis);
+        $form = $this->createForm(AvisType::class, $avis);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $manager = $this->getDoctrine()->getManager();
-            $manager->persist($Avis);
+            $manager->persist($avis);
             $manager->flush();
-            $this->addFLash('sucess','Votre avis a bien ete creer');
+            $this->addFlash('success','Votre avis à bien ete créée.');
             $this->redirectToRoute('home');
         }
-        return $this->render('avis/avis_form.html.twig', array('avisForm' => $form->createView()));
+        return $this->render('avis/avis_form.html.twig', [
+            'avisForm' => $form->createView()
+        ]);
     }
 
 

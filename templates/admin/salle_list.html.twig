@@ -43,7 +43,7 @@
                                                 <td>{{ salle.id }}</td>
                                                 <td>{{ salle.titre }}</td>
                                                 <td>{{ salle.description | slice(0, 40) }}</td>
-                                                <td>{{ salle.pays }}</td>
+                                                <td>{{ salle.pays | country_name('fr') }}</td>
                                                 <td>{{ salle.ville }}</td>
                                                 <td>{{ salle.adresse }}</td>
                                                 <td>{{ salle.cp }}</td>

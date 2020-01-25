@@ -14,7 +14,9 @@ class AvisType extends AbstractType
         $builder
             ->add('commentaire')
             ->add('note')
-            ->add('Submit',SubmitType::class)
+            ->add('submit',SubmitType::class, [
+                'label' => 'Envoyer',
+            ])
         ;
     }
 

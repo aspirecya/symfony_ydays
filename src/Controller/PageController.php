@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Avis;
 use App\Entity\Membre;
 use App\Entity\Produit;
 use App\Entity\Salle;
+use App\Form\AvisType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
@@ -25,6 +28,23 @@ class PageController extends AbstractController
             'controller_name' => 'PageController',
             'produits' => $produits,
             'categories' => $categories,
+        ]);
+    }
+
+    /**
+     * @Route("/salle/{id}", name="single_produit_page")
+     */
+    public function single_product_page(Request $request)
+    {
+        $produitRepository = $this->getDoctrine()->getRepository(Produit::class);
+        $produit = $produitRepository->find($request->get('id'));
+        $form = $this->createForm(AvisType::class);
+
+
+        return $this->render('produit_page.html.twig', [
+            'controller_name' => 'PageController',
+            'produit' => $produit,
+            'avisForm' => $form->createView(),
         ]);
     }
 

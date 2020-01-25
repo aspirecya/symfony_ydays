@@ -1,0 +1,166 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    {#{{ dump(produit.salle.avis) }}#}
+    <section class="section bg-gray">
+        <!-- Container Start -->
+        <div class="container">
+            <div class="row">
+                <!-- Left sidebar -->
+                <div class="col-md-8">
+                    <div class="product-details">
+                        <h1 class="product-title">{{ produit.salle.titre }}</h1>
+                        <div class="product-meta">
+                            <ul class="list-inline">
+                                <li class="list-inline-item"><i class="fa fa-calendar"></i> {{ produit.getDateArrivee | date('d/m/Y') }} au {{ produit.getDateDepart | date('d/m/Y') }}</li>
+                                <li class="list-inline-item"><i class="fa fa-folder-open-o"></i> Categorie: {{ produit.salle.categorie }}</li>
+                                <li class="list-inline-item"><i class="fa fa-location-arrow"></i> Lieu: {{ produit.salle.ville }}</li>
+                            </ul>
+                        </div>
+                        <img class="d-block w-100" src="{{ asset('/images/salles/' ~ produit.salle.photo) }}" alt="{{ produit.salle.titre }}">
+                        <div class="content">
+                            <ul class="nav nav-pills  justify-content-center" id="pills-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Détails de la salle</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Spécifications</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Avis</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                    <h3 class="tab-title">Description</h3>
+                                    <p>{{ produit.salle.description }}</p>
+
+                                </div>
+                                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                    <h3 class="tab-title">Product Specifications</h3>
+                                    <table class="table table-bordered product-table">
+                                        <tbody>
+                                        <tr>
+                                            <td>Prix</td>
+                                            <td>{{ produit.prix | number_format(2, '.', ',') }} €</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Listing créée le</td>
+                                            <td>26th December</td>
+                                        </tr>
+                                        <tr>
+                                            <td>État de la salle</td>
+                                            <td>{{ produit.etat }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Adresse</td>
+                                            <td>{{ produit.salle.adresse }} {{ produit.salle.cp }}, {{ produit.salle.pays | country_name('fr') }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Capacité</td>
+                                            <td>{{ produit.salle.capacite }} personnes</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Catégorie</td>
+                                            <td>{{ produit.salle.categorie }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                    <h3 class="tab-title">Product Review</h3>
+                                    <div class="product-review">
+                                        <div class="media">
+                                            <!-- Avater -->
+                                            <div class="media-body">
+                                                <!-- Ratings -->
+                                                {#<div class="ratings">#}
+                                                    {#<ul class="list-inline">#}
+                                                        {#<li class="list-inline-item">#}
+                                                            {#<i class="fa fa-star"></i>#}
+                                                        {#</li>#}
+                                                        {#<li class="list-inline-item">#}
+                                                            {#<i class="fa fa-star"></i>#}
+                                                        {#</li>#}
+                                                        {#<li class="list-inline-item">#}
+                                                            {#<i class="fa fa-star"></i>#}
+                                                        {#</li>#}
+                                                        {#<li class="list-inline-item">#}
+                                                            {#<i class="fa fa-star"></i>#}
+                                                        {#</li>#}
+                                                        {#<li class="list-inline-item">#}
+                                                            {#<i class="fa fa-star"></i>#}
+                                                        {#</li>#}
+                                                    {#</ul>#}
+                                                {#</div>#}
+                                                <div class="name">
+                                                    <h5>Jessica Brown</h5>
+                                                </div>
+                                                <div class="date">
+                                                    <p>Mar 20, 2018</p>
+                                                </div>
+                                                <div class="review-comment">
+                                                    <p>
+                                                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremqe laudant tota rem ape riamipsa eaque.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="review-submission">
+                                            <h3 class="tab-title">Submit your review</h3>
+                                            <!-- Rate -->
+                                            <div class="rate">
+                                                <div class="starrr"></div>
+                                            </div>
+                                            <div class="review-submit">
+                                                {{ form_start(avisForm) }}
+                                                    <div class="col-12">
+                                                        {{ form_row(avisForm.commentaire, {'attr': {'placeholder': 'Commentaire'}}) }}
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        {{ form_row(avisForm.note, {'attr': {'placeholder': 'Note'}}) }}
+                                                    </div>
+                                                {{ form_end(avisForm) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="sidebar">
+                        <div class="widget price text-center">
+                            <h4>Prix</h4>
+                            <p>{{ produit.prix | number_format(2, '.', ',') }} €</p>
+                        </div>
+                        <!-- Map Widget -->
+                        <div class="widget map">
+                            <div class="map">
+                                <div id="map">TODO: google maps ici</div>
+                            </div>
+                        </div>
+                        <!-- Rate Widget -->
+                        <div class="widget rate">
+                            <!-- Heading -->
+                            <h5 class="widget-header text-center">Laissez un avis
+                                <br>
+                                et notez cette salle</h5>
+                            <!-- Rate -->
+                            <div class="starrr"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Container End -->
+    </section>
+
+
+{% endblock %}

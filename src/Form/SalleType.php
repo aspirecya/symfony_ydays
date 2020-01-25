@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Salle;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,7 +19,9 @@ class SalleType extends AbstractType
             ->add('titre')
             ->add('description')
             ->add('file', FileType::class)
-            ->add('pays')
+            ->add('pays', CountryType::class, [
+                'choice_translation_locale' => 'FR',
+            ])
             ->add('ville')
             ->add('adresse')
             ->add('cp')
