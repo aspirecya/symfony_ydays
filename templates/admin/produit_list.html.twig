@@ -26,6 +26,7 @@
                                     <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Date de création</th>
                                         <th>Date de début de la réservation</th>
                                         <th>Date de fin de la réservation</th>
                                         <th>Salle</th>
@@ -38,6 +39,7 @@
                                         {% for produit in produits %}
                                             <tr>
                                                 <td>{{ produit.id }}</td>
+                                                <td>{{ produit.getDateCreation | date('d/m/Y') }}</td>
                                                 <td>{{ produit.getDateArrivee() | date('d/m/Y') }}</td>
                                                 <td>{{ produit.getDateDepart() | date('d/m/Y') }}</td>
                                                 <td>{{ produit.getSalle() }}</td>
@@ -50,6 +52,7 @@
                                     <tfoot>
                                     <tr>
                                         <td><strong>ID</strong></td>
+                                        <th><strong>Date de création</strong></th>
                                         <td><strong>Date de début de la réservation</strong></td>
                                         <td><strong>Date de fin de la réservation</strong></td>
                                         <td><strong>Salle</strong></td>

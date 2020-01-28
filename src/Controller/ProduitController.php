@@ -38,6 +38,8 @@ class ProduitController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($produit);
+            $produit->setSalle($form->get("salle")->getData());
+            $produit->setDateCreation(new \DateTime('now'));
             $manager->flush();
 
             $this->addFlash('success', 'Le produit à été créée avec succès.');

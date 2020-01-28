@@ -42,10 +42,6 @@ class RegistrationFormType extends AbstractType
             ->add('email', null, [
                 'label' => false,
             ])
-            ->add('date_enregistrement', DateType::class, [
-                'data' => new \DateTime("now"),
-                'html5' => false,
-            ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'label' => "J'accepte les conditions générales d'utilisation (CGU).",

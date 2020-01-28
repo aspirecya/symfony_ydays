@@ -45,8 +45,9 @@
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ path('membre_edit') }}">Mon compte</a>
-                              <a class="dropdown-item" href="{{ path('app_logout') }}">Deconnexion</a>
+                                <a class="dropdown-item" href="{{ path('membre_edit') }}">Éditer mon profil</a>
+                                <a class="dropdown-item" href="{{ path('commande_membre') }}">Mes commandes</a>
+                                <a class="dropdown-item" href="{{ path('app_logout') }}">Deconnexion</a>
                             </div>
                         </li>
                      {% endif %}
@@ -62,7 +63,7 @@
             </div>
         </nav>
 
-        <div class="container">
+        <div>
             {% for message in app.flashes('success') %}
                 <div class="alert alert-success">{{ message }}</div>
             {% endfor %}
@@ -98,7 +99,7 @@
                 <div class="col-md-4 footer-about">
                     <h4>À propos</h4>
                     <p> Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet. </p>
-                    <div class="social-links social-icons"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a><a href="#"><i class="fa fa-github"></i></a></div>
+                    {#<div class="social-links social-icons"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a><a href="#"><i class="fa fa-github"></i></a></div>#}
                 </div>
             </div>
         </footer>

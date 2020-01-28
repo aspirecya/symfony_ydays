@@ -66,12 +66,12 @@ class Salle
     private $categorie;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Produit", mappedBy="salle", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Produit", mappedBy="salle", fetch="EAGER", cascade={"remove"})
      */
     private $produits;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Avis", mappedBy="salle_id")
+     * @ORM\OneToMany(targetEntity="App\Entity\Avis", mappedBy="salle", fetch="EAGER", cascade={"remove"})
      */
     private $avis;
 
@@ -81,7 +81,7 @@ class Salle
         $this->avis = new ArrayCollection();
     }
 
-   
+
 
     public function getId(): ?int
     {
@@ -256,7 +256,6 @@ class Salle
 
     public function __toString()
     {
-        // TODO: Implement __toString() method.
         return $this->titre . " (ID: " . $this->id . ")";
     }
 
@@ -290,6 +289,4 @@ class Salle
 
         return $this;
     }
-
-
 }

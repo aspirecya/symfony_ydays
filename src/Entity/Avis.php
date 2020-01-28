@@ -32,16 +32,16 @@ class Avis
     private $date_enregistrement;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Salle", inversedBy="avis", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $salle;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Membre", inversedBy="avis")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $membre_id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Salle", inversedBy="avis")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $salle_id;
+    private $membre;
 
     public function getId(): ?int
     {
@@ -84,26 +84,26 @@ class Avis
         return $this;
     }
 
-    public function getMembreId(): ?Membre
+    public function getSalleId(): ?Salle
     {
-        return $this->membre_id;
+        return $this->salle;
     }
 
-    public function setMembreId(?Membre $membre_id): self
+    public function setSalleId(?Salle $salle): self
     {
-        $this->membre_id = $membre_id;
+        $this->salle = $salle;
 
         return $this;
     }
 
-    public function getSalleId(): ?Salle
+    public function getMembreId(): ?Membre
     {
-        return $this->salle_id;
+        return $this->membre;
     }
 
-    public function setSalleId(?Salle $salle_id): self
+    public function setMembreId(?Membre $membre): self
     {
-        $this->salle_id = $salle_id;
+        $this->membre = $membre;
 
         return $this;
     }

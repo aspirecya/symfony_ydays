@@ -34,9 +34,11 @@
                                 <li class="nav-item">
                                     <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Spécifications</a>
                                 </li>
+                                {% if app.user %}
                                 <li class="nav-item">
                                     <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Avis</a>
                                 </li>
+                                {% endif %}
                             </ul>
                             <div class="tab-content" id="pills-tabContent">
                                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
@@ -54,14 +56,14 @@
                                         </tr>
                                         <tr>
                                             <td>Listing créée le</td>
-                                            <td>26th December</td>
+                                            <td>{{ produit.getDateCreation | date('d/m/Y') }}</td>
                                         </tr>
                                         <tr>
                                             <td>État de la salle</td>
                                             <td>{{ produit.etat }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Adresse</td>
+                                            <td>Localisation</td>
                                             <td>{{ produit.salle.adresse }} {{ produit.salle.cp }}, {{ produit.salle.pays | country_name('fr') }}</td>
                                         </tr>
                                         <tr>
@@ -76,50 +78,32 @@
                                     </table>
                                 </div>
                                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                                    <h3 class="tab-title">Product Review</h3>
+                                    <h3 class="tab-title">Laissez un avis sur cette salle!</h3>
                                     <div class="product-review">
+                                        {% for avis in produit.salle.avis %}
                                         <div class="media">
                                             <!-- Avater -->
                                             <div class="media-body">
-                                                <!-- Ratings -->
-                                                {#<div class="ratings">#}
-                                                    {#<ul class="list-inline">#}
-                                                        {#<li class="list-inline-item">#}
-                                                            {#<i class="fa fa-star"></i>#}
-                                                        {#</li>#}
-                                                        {#<li class="list-inline-item">#}
-                                                            {#<i class="fa fa-star"></i>#}
-                                                        {#</li>#}
-                                                        {#<li class="list-inline-item">#}
-                                                            {#<i class="fa fa-star"></i>#}
-                                                        {#</li>#}
-                                                        {#<li class="list-inline-item">#}
-                                                            {#<i class="fa fa-star"></i>#}
-                                                        {#</li>#}
-                                                        {#<li class="list-inline-item">#}
-                                                            {#<i class="fa fa-star"></i>#}
-                                                        {#</li>#}
-                                                    {#</ul>#}
-                                                {#</div>#}
                                                 <div class="name">
-                                                    <h5>Jessica Brown</h5>
+                                                    <h5>{{ avis.getMembreId.getPseudo }}</h5>
                                                 </div>
                                                 <div class="date">
-                                                    <p>Mar 20, 2018</p>
+                                                    <p>{{ avis.getDateEnregistrement | date('d/m/Y') }}</p>
                                                 </div>
                                                 <div class="review-comment">
                                                     <p>
-                                                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremqe laudant tota rem ape riamipsa eaque.
+                                                        {{ avis.commentaire }}
                                                     </p>
                                                 </div>
+                                                {% if avis.getMembreId() is same as(app.user) %}
+                                                <div>
+                                                    <a href="#" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i> Del</a>
+                                                </div>
+                                                {% endif %}
                                             </div>
                                         </div>
+                                        {% endfor %}
                                         <div class="review-submission">
-                                            <h3 class="tab-title">Submit your review</h3>
-                                            <!-- Rate -->
-                                            <div class="rate">
-                                                <div class="starrr"></div>
-                                            </div>
                                             <div class="review-submit">
                                                 {{ form_start(avisForm) }}
                                                     <div class="col-12">
@@ -143,6 +127,14 @@
                             <h4>Prix</h4>
                             <p>{{ produit.prix | number_format(2, '.', ',') }} €</p>
                         </div>
+                        {% if app.user and produit.etat == "Libre" %}
+                        <a href="{{ path('commander_salle', { 'id': produit.id }) }}">
+                            <div class="widget text-center">
+                                <h4>Commander cette salle</h4>
+                                <p>Vous allez être redirigé vers la page de commande.</p>
+                            </div>
+                        </a>
+                        {% endif %}
                         <!-- Map Widget -->
                         <div class="widget map">
                             <div class="map">

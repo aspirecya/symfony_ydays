@@ -1,0 +1,63 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Gestion des membres{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <script src="{{ asset('js/chart.min.js') }}"></script>
+    <script src="{{ asset('js/bs-init.js') }}"></script>
+    <script src="{{ asset('js/theme.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div id="wrapper" class="mt-2">
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <div class="container-fluid">
+                    <h3 class="text-dark mb-4">Gestion des commandes LokiSalle</h3>
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 font-weight-bold">Commandes passées</p>
+                        </div>
+                        <div class="card-body">
+                            <a href="{{ path('admin_commande_create') }}" class="btn btn-primary btn-xs pull-right mb-4"><b>+</b> Créer une commande</a>
+                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                <table class="table dataTable my-0" id="dataTable">
+                                    <thead>
+                                    <tr>
+                                        <th><strong>ID</strong></th>
+                                        <th><strong>Date de création</strong></th>
+                                        <th><strong>Produit</strong></th>
+                                        <th><strong>Membre</strong></th>
+                                        <th class="text-center"><strong>Action</strong></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for commande in commandes %}
+                                        <tr>
+                                            <td>{{ commande.id }}</td>
+                                            <td>{{ commande.getDateEnregistrement | date('d/m/Y') }}</td>
+                                            <td>{{ commande.getProduit() }}</td>
+                                            <td>{{ commande.getMembre() }}</td>
+                                            <td class="text-center"><a class='btn btn-info btn-xs' href="{{ path('admin_commande_edit', { id: commande.id }) }}"><i class="far fa-edit"></i> Edit</a> <a href="{{ path('admin_commande_delete', { id: commande.id }) }}" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i> Del</a></td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th><strong>ID</strong></th>
+                                        <th><strong>Date de création</strong></th>
+                                        <th><strong>Produit</strong></th>
+                                        <th><strong>Membre</strong></th>
+                                        <th class="text-center"><strong>Action</strong></th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

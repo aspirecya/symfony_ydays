@@ -1034,7 +1034,11 @@ ul.pagination .active a {
 }
 
 .dashboard-container .product-dashboard-table .product-details {
-    width: 45%;
+    width: 50%;
+}
+
+.dashboard-container .product-dashboard-table .product-date {
+    width: 50%;
 }
 
 .dashboard-container .product-dashboard-table .product-details span {

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/css/styles.css') }}">
+{% endblock %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- Recently Favorited -->
+        <div class="widget dashboard-container my-adslist">
+            <h3 class="widget-header">Mes commandes</h3>
+            {% if commandes %}
+                <table class="table product-dashboard-table">
+                    <thead>
+                    <tr>
+                        <th>Date de commande</th>
+                        <th>Salle reservée</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for commande in commandes %}
+                        <tr>
+                            <td class="product-date">
+                                {{ commande.getDateEnregistrement | date('d/m/Y') }}
+                            </td>
+                            <td class="product-details">
+                                <h3 class="title"><strong>Salle:</strong> {{ commande.getProduit().getSalle().getTitre() }}</h3>
+                                <span class="add-id"><strong>ID Salle:</strong> {{ commande.getProduit().getSalle().getId() }}</span>
+                                <span><strong>Listing créé le: </strong><time>{{ commande.getProduit().getDateCreation() | date('d/m/Y') }}</time> </span>
+                                <span class="location"><strong>Localisation:</strong> {{ commande.getProduit().getSalle().getAdresse() }} {{ commande.getProduit().getSalle().getCp() }}, {{ commande.getProduit().getSalle().getPays() | country_name('fr') }}</span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <h5 class="text-center">Vous n'avez aucune commande.</h5>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

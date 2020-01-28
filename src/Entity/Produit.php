@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -42,6 +44,15 @@ class Produit
      */
     private $salle;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date_creation;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Commande", cascade={"persist", "remove"}, mappedBy="produit")
+     */
+    private $commande;
 
     public function getId(): ?int
     {
@@ -107,5 +118,35 @@ class Produit
 
         return $this;
     }
+
+    public function getDateCreation(): ?\DateTimeInterface
+    {
+        return $this->date_creation;
+    }
+
+    public function setDateCreation(\DateTimeInterface $date_creation): self
+    {
+        $this->date_creation = $date_creation;
+
+        return $this;
+    }
+
+    public function getCommande(): ?Commande
+    {
+        return $this->commande;
+    }
+
+    public function setCommande(?Commande $commande): self
+    {
+        $this->commande = $commande;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->salle->getTitre() . " (ID: " . $this->salle->getId() . ")";
+    }
+
 
 }

@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 {% endblock %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Connexion{% endblock %}
 
 {% block body %}
     {% if error %}
@@ -21,13 +21,13 @@
 
     <div class="login-clean">
         <form method="post">
-            <h2 class="sr-only">Login Form</h2>
+            <h2 class="sr-only">Connexion</h2>
             <div class="illustration"><ion-icon name="navigate"></ion-icon></div>
             <div class="form-group"><input id="inputEmail" class="form-control" type="email" name="email" placeholder="Email" required autofocus></div>
             <div class="form-group"><input id="inputPassword" class="form-control" type="password" name="password" placeholder="Password"></div>
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-            <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Log In</button></div>
-            <a class="forgot" href="#">Forgot your email or password?</a>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Connexion</button></div>
+            <a class="forgot" href="#">Mot de passe oublié</a>
         </form>
     </div>
 

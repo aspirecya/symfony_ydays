@@ -10,8 +10,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MembreRepository")
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
- * @UniqueEntity(fields={"pseudo"}, message="There is already an account with this username")
+ * @UniqueEntity(fields={"email"}, message="Cette adresse existe déjà dans la base de données.")
+ * @UniqueEntity(fields={"pseudo"}, message="Ce pseudo existe déjà dans la base de données.")
  */
 class Membre implements UserInterface
 {
@@ -61,13 +61,19 @@ class Membre implements UserInterface
     private $date_enregistrement;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Avis", mappedBy="membre_id")
+     * @ORM\OneToMany(targetEntity="App\Entity\Avis", mappedBy="membre")
      */
     private $avis;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Commande", mappedBy="membre", cascade={"remove"})
+     */
+    private $commandes;
 
     public function __construct()
     {
         $this->avis = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
     }
 
     public function getPseudo(): ?string
@@ -238,4 +244,43 @@ class Membre implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection|Commande[]
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
+            $commande->setMembre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->contains($commande)) {
+            $this->commandes->removeElement($commande);
+            // set the owning side to null (unless already changed)
+            if ($commande->getMembre() === $this) {
+                $commande->setMembre(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        // TODO: Implement __toString() method.
+        return $this->getPseudo() . " (ID: " . $this->getId() . ")";
+    }
+
+
 }

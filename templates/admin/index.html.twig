@@ -1,6 +1,6 @@
 {% extends 'admin_base.html.twig' %}
 
-{% block title %}Gestion des salles{% endblock %}
+{% block title %}LokiSalle - Admin Office{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -41,7 +41,7 @@
                                     <div class="text-dark font-weight-bold h5 mb-0"><span>{{ produits }}</span></div>
                                 </a>
                             </div>
-                            <div class="col-auto"><i class="fas fa-dollar-sign fa-2x text-gray-300"></i></div>
+                            <div class="col-auto"><i class="far fa-clipboard fa-2x text-gray-300"></i></div>
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,22 @@
                                     <div class="text-dark font-weight-bold h5 mb-0"><span>{{ membres }}</span></div>
                                 </a>
                             </div>
-                            <div class="col-auto"><i class="fas fa-comments fa-2x text-gray-300"></i></div>
+                            <div class="col-auto"><i class="fas fa-users fa-2x text-gray-300"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3 mb-4">
+                <div class="card shadow border-left-warning py-2">
+                    <div class="card-body">
+                        <div class="row align-items-center no-gutters">
+                            <div class="col mr-2">
+                                <a href="{{ path('admin_commande') }}">
+                                    <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span>Nombre de commandes</span></div>
+                                    <div class="text-dark font-weight-bold h5 mb-0"><span>{{ commandes }}</span></div>
+                                </a>
+                            </div>
+                            <div class="col-auto"><i class="fas fa-dollar-sign fa-2x text-gray-300"></i></div>
                         </div>
                     </div>
                 </div>

@@ -18,7 +18,7 @@
                     <div class="content-block">
                         <div class="short-popular-category-list text-center">
                             {% if produits %}
-                                <h2>Popular Category</h2>
+                                <h2>Nos types de salles phares</h2>
                                 <ul class="list-inline">
                                     {% for category in categories %}
                                         <li class="list-inline-item">
@@ -59,13 +59,13 @@
                                     </div>
 
                                     <div class="card-body">
-                                        <h4 class="card-title"><a href="">{{ produit.salle.titre }}</a></h4><span class="price">{{ produit.prix | number_format(2, '.', ',') }} €</span>
+                                        <h4 class="card-title"><a href="{{ path('single_produit_page', { 'id': produit.id }) }}">{{ produit.salle.titre }}</a></h4><span class="price">{{ produit.prix | number_format(2, '.', ',') }} €</span>
                                         <ul class="list-inline product-meta">
                                             <li class="list-inline-item">
-                                                <a href=""><i class="fa fa-folder-open-o"></i> {{ produit.salle.categorie }}</a>
+                                                <a href="{{ path('single_produit_page', { 'id': produit.id }) }}"><i class="fa fa-folder-open-o"></i> {{ produit.salle.categorie }}</a>
                                             </li>
                                             <li class="list-inline-item">
-                                                <a href=""><i class="fa fa-calendar"></i> {{ produit.getDateArrivee | date('d/m/Y') }} au {{ produit.getDateDepart | date('d/m/Y') }}</a>
+                                                <a href="{{ path('single_produit_page', { 'id': produit.id }) }}"><i class="fa fa-calendar"></i> {{ produit.getDateArrivee | date('d/m/Y') }} au {{ produit.getDateDepart | date('d/m/Y') }}</a>
                                             </li>
                                         </ul>
                                         <p class="card-text">{{ produit.salle.description }}</p>
