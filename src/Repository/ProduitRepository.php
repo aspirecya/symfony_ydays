@@ -26,4 +26,22 @@ class ProduitRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    public function countStocks()
+    {
+        return $this->createQueryBuilder('t')
+            ->select('sum(t.stock)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function removeFromStock($product)
+    {
+        return $this->createQueryBuilder('f')
+            ->update($this->getEntityName(), 'f')
+            ->set('f.stock', $product->getStock() - 1)
+            ->where('f.id = :id')->setParameter('id', $product->getId())
+            ->getQuery()
+            ->execute();
+    }
 }

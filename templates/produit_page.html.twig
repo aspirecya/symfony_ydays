@@ -122,14 +122,21 @@
                         <div class="widget price text-center">
                             <h4>Prix</h4>
                             <p>{{ produit.prix | number_format(2, '.', ',') }} €</p>
+                            </br>
+                            <h4>Stocks</h4>
+                            <p>{{ produit.stock }} exemplaires en stock</p>
                         </div>
                         {% if app.user %}
-                        <a href="{{ path('commander_salle', { 'id': produit.id }) }}">
-                            <div class="widget text-center">
-                                <h4>Commander ce produit</h4>
-                                <p>Vous allez être redirigé vers la page de commande.</p>
-                            </div>
-                        </a>
+                            {% for commande in commandes %}g
+                                {% if commande.produit.id != produit.id %}
+                                    <a href="{{ path('commander_salle', { 'id': produit.id }) }}">
+                                        <div class="widget text-center">
+                                            <h4>Commander ce produit</h4>
+                                            <p>Vous allez être redirigé vers la page de commande.</p>
+                                        </div>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
                         {% endif %}
                         <!-- Map Widget -->
                         <div class="widget map">

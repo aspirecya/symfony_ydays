@@ -6,8 +6,6 @@ use App\Entity\Produit;
 use App\Entity\Salle;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -23,6 +21,7 @@ class ProduitType extends AbstractType
                 'class' => Salle::class,
                 'choice_label' => 'titre'
             ])
+            ->add('stock')
             ->add('valider', SubmitType::class)
         ;
     }

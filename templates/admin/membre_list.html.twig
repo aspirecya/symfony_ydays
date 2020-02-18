@@ -41,9 +41,9 @@
                                                 <td>{{ membre.id }}</td>
                                                 <td>{{ membre.email }}</td>
                                                 <td>{{ membre.nom }}</td>
-                                                <td>{{ membre.pseudo }}</td>
-                                                <td>{{ membre.prenom }}</td>
                                                 <td>{{ membre.civilite }}</td>
+                                                <td>{{ membre.nom }}</td>
+                                                <td>{{ membre.prenom }}</td>
                                                 <td>{{ membre.getDateEnregistrement | date('d/m/Y') }}</td>
                                                 {#<td class="text-center"><a class='btn btn-info btn-xs' href="{{ path('admin_salle_edit', { id: membre.id }) }}"><i class="far fa-edit"></i> Edit</a> <a href="{{ path('admin_salle_delete', { id: salle.id }) }}" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i> Del</a></td>#}
                                             </tr>

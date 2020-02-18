@@ -28,6 +28,7 @@
                                         <th>ID</th>
                                         <th>Date de création</th>
                                         <th>Produit</th>
+                                        <th>Stock dispo</th>
                                         <th>Prix</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -38,6 +39,7 @@
                                                 <td>{{ produit.id }}</td>
                                                 <td>{{ produit.getDateCreation | date('d/m/Y') }}</td>
                                                 <td>{{ produit.getSalle() }}</td>
+                                                <td>{{ produit.stock }}</td>
                                                 <td>{{ produit.prix | number_format(2, '.', ',') }} €</td>
                                                 <td class="text-center"><a class='btn btn-info btn-xs' href="{{ path('admin_produit_edit', { id: produit.id }) }}"><i class="far fa-edit"></i> Edit</a> <a href="{{ path('admin_produit_delete', { id: produit.id }) }}" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i> Del</a></td>
                                             </tr>
@@ -48,6 +50,7 @@
                                         <th>ID</th>
                                         <th>Date de création</th>
                                         <th>Produit</th>
+                                        <th>Stock dispo</th>
                                         <th>Prix</th>
                                         <th class="text-center">Action</th>
                                     </tr>

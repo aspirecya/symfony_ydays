@@ -37,23 +37,26 @@ class Membre implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $civilite;
+
     /**
      * @ORM\Column(type="string", length=20)
      */
     private $nom;
-    /**
-     * @ORM\Column(type="string", length=20)
-     */
-    private $pseudo;
 
     /**
      * @ORM\Column(type="string", length=20)
      */
     private $prenom;
-   /**
-     * @ORM\Column(type="string", length=255)
+
+    /**
+     * @ORM\Column(type="string", length=20)
      */
-    private $civilite;
+    private $pseudo;
 
     /**
      * @ORM\Column(type="datetime")

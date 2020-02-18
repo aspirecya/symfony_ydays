@@ -24,6 +24,11 @@ class Produit
     private $prix;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $stock;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Salle", inversedBy="produits")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -96,6 +101,17 @@ class Produit
     {
         return $this->salle->getTitre() . " (ID: " . $this->salle->getId() . ")";
     }
+
+    public function getStock(): ?int
+    {
+        return $this->stock;
+    }
+
+    public function setStock($stock)
+    {
+        $this->stock = $stock;
+    }
+
 
 
 }

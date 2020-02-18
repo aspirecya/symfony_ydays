@@ -50,6 +50,7 @@ class PageController extends AbstractController
      */
     public function single_product_page(Request $request)
     {
+        $commandesRepository = $this->getDoctrine()->getRepository(Commande::class);
         $produitRepository = $this->getDoctrine()->getRepository(Produit::class);
         $produit = $produitRepository->find($request->get('id'));
         $salle = $produit->getSalle();
@@ -74,9 +75,14 @@ class PageController extends AbstractController
             $this->addFlash('success','Votre avis à bien ete créée.');
         }
 
+        $commandes = $commandesRepository->findBy([
+            'membre' => $this->getUser()->getId()
+        ]);
+
         return $this->render('produit_page.html.twig', [
             'controller_name' => 'PageController',
             'produit' => $produit,
+            'commandes' => $commandes,
             'avisForm' => $form->createView(),
         ]);
     }
@@ -87,7 +93,6 @@ class PageController extends AbstractController
     public function commander_salle(Request $request)
     {
         $produitRepository = $this->getDoctrine()->getRepository(Produit::class);
-        $commandeRepository = $this->getDoctrine()->getRepository(Commande::class);
         $manager = $this->getDoctrine()->getManager();
 
         $user = $this->getUser();
@@ -99,7 +104,7 @@ class PageController extends AbstractController
         $commande->setDateEnregistrement(new \DateTime('now'));
         $commande->setMembre($user);
         $commande->setProduit($produit);
-//        $produit->setEtat("Reservée");
+        $produitRepository->removeFromStock($produit);
 
         $user->addCommande($commande);
 
@@ -117,6 +122,7 @@ class PageController extends AbstractController
     {
         $membreCount = $this->getDoctrine()->getRepository(Membre::class)->countMembres();
         $produitCount = $this->getDoctrine()->getRepository(Produit::class)->countProduitsDispo();
+        $stockCount = $this->getDoctrine()->getRepository(Produit::class)->countStocks();
         $salleCount = $this->getDoctrine()->getRepository(Salle::class)->countSalles();
         $commandeCount = $this->getDoctrine()->getRepository(Commande::class)->countCommandes();
 
@@ -126,6 +132,7 @@ class PageController extends AbstractController
             'produits' => $produitCount,
             'salles' => $salleCount,
             'commandes' => $commandeCount,
+            'stocks' => $stockCount,
         ]);
     }
 }

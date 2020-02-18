@@ -26,10 +26,9 @@
                                 {{ commande.getDateEnregistrement | date('d/m/Y') }}
                             </td>
                             <td class="product-details">
-                                <h3 class="title"><strong>Salle:</strong> {{ commande.getProduit().getSalle().getTitre() }}</h3>
-                                <span class="add-id"><strong>ID Salle:</strong> {{ commande.getProduit().getSalle().getId() }}</span>
+                                <h3 class="title"><strong>Produit:</strong> {{ commande.getProduit().getSalle().getTitre() }}</h3>
+                                <span class="add-id"><strong>ID produit:</strong> {{ commande.getProduit().getSalle().getId() }}</span>
                                 <span><strong>Listing créé le: </strong><time>{{ commande.getProduit().getDateCreation() | date('d/m/Y') }}</time> </span>
-                                <span class="location"><strong>Localisation:</strong> {{ commande.getProduit().getSalle().getAdresse() }} {{ commande.getProduit().getSalle().getCp() }}, {{ commande.getProduit().getSalle().getPays() | country_name('fr') }}</span>
                             </td>
                         </tr>
                     {% endfor %}

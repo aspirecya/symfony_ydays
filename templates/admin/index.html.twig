@@ -22,7 +22,7 @@
                         <div class="row align-items-center no-gutters">
                             <div class="col mr-2">
                                 <a href="{{ path('admin_salle') }}">
-                                    <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Nombre de salles</span></div>
+                                    <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Nombre de bananes</span></div>
                                     <div class="text-dark font-weight-bold h5 mb-0"><span>{{ salles }}</span></div>
                                 </a>
                             </div>
@@ -37,7 +37,7 @@
                         <div class="row align-items-center no-gutters">
                             <div class="col mr-2">
                                 <a href="{{ path('admin_produit') }}">
-                                    <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span>Nombre de disponibilités</span></div>
+                                    <div class="text-uppercase font-weight-bold text-xs mb-1"><span>Nombre de produits en vente</span></div>
                                     <div class="text-dark font-weight-bold h5 mb-0"><span>{{ produits }}</span></div>
                                 </a>
                             </div>
@@ -52,7 +52,7 @@
                         <div class="row align-items-center no-gutters">
                             <div class="col mr-2">
                                 <a href="{{ path('admin_membre') }}">
-                                    <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span>Nombre de membres</span></div>
+                                    <div class="text-uppercase font-weight-bold text-xs mb-1"><span>Nombre de membres</span></div>
                                     <div class="text-dark font-weight-bold h5 mb-0"><span>{{ membres }}</span></div>
                                 </a>
                             </div>
@@ -67,11 +67,26 @@
                         <div class="row align-items-center no-gutters">
                             <div class="col mr-2">
                                 <a href="{{ path('admin_commande') }}">
-                                    <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span>Nombre de commandes</span></div>
+                                    <div class="text-uppercase font-weight-bold text-xs mb-1"><span>Nombre de commandes</span></div>
                                     <div class="text-dark font-weight-bold h5 mb-0"><span>{{ commandes }}</span></div>
                                 </a>
                             </div>
                             <div class="col-auto"><i class="fas fa-dollar-sign fa-2x text-gray-300"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3 mb-4">
+                <div class="card shadow border-left-warning py-2">
+                    <div class="card-body">
+                        <div class="row align-items-center no-gutters">
+                            <div class="col mr-2">
+                                <a href="{{ path('admin_commande') }}">
+                                    <div class="text-uppercase font-weight-bold text-xs mb-1"><span>Stock disponible</span></div>
+                                    <div class="text-dark font-weight-bold h5 mb-0"><span>{{ stocks }}</span></div>
+                                </a>
+                            </div>
+                            <div class="col-auto"><i class="fas fa-box fa-2x text-gray-300"></i></div>
                         </div>
                     </div>
                 </div>
