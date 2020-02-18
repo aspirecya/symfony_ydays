@@ -127,7 +127,7 @@
                             <p>{{ produit.stock }} exemplaires en stock</p>
                         </div>
                         {% if app.user %}
-                            {% for commande in commandes %}g
+                            {% for commande in commandes %}
                                 {% if commande.produit.id != produit.id %}
                                     <a href="{{ path('commander_salle', { 'id': produit.id }) }}">
                                         <div class="widget text-center">
