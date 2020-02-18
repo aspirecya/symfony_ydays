@@ -14,10 +14,10 @@
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-4">Gestion des salles LokiSalle</h3>
+                    <h3 class="text-dark mb-4">Gestion des produits</h3>
                     <div class="card shadow">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 font-weight-bold">Salles</p>
+                            <p class="text-primary m-0 font-weight-bold">Produit</p>
                         </div>
                         <div class="card-body">
                             <a href="{{ path('admin_salle_create') }}" class="btn btn-primary btn-xs pull-right mb-4"><b>+</b> Créer une salle</a>
@@ -28,12 +28,9 @@
                                             <th><strong>ID</strong></th>
                                             <th><strong>Titre</strong></th>
                                             <th><strong>Description</strong></th>
-                                            <th><strong>Pays</strong></th>
-                                            <th><strong>Ville</strong></th>
-                                            <th><strong>Adresse</strong></th>
-                                            <th><strong>Code postal</strong></th>
-                                            <th><strong>Capacité</strong></th>
-                                            <th><strong>Catégorie</strong></th>
+                                            <th><strong>Matière</strong></th>
+                                            <th><strong>Taille</strong></th>
+                                            <th><strong>Couleur</strong></th>
                                             <th class="text-center"><strong>Action</strong></th>
                                         </tr>
                                     </thead>
@@ -43,12 +40,9 @@
                                                 <td>{{ salle.id }}</td>
                                                 <td>{{ salle.titre }}</td>
                                                 <td>{{ salle.description | slice(0, 40) }}</td>
-                                                <td>{{ salle.pays | country_name('fr') }}</td>
-                                                <td>{{ salle.ville }}</td>
-                                                <td>{{ salle.adresse }}</td>
-                                                <td>{{ salle.cp }}</td>
-                                                <td>{{ salle.capacite }}</td>
-                                                <td>{{ salle.categorie }}</td>
+                                                <td>{{ salle.matiere }}</td>
+                                                <td>{{ salle.taille }}</td>
+                                                <td>{{ salle.couleur }}</td>
                                                 <td class="text-center"><a class='btn btn-info btn-xs' href="{{ path('admin_salle_edit', { id: salle.id }) }}"><i class="far fa-edit"></i> Edit</a> <a href="{{ path('admin_salle_delete', { id: salle.id }) }}" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i> Del</a></td>
                                             </tr>
                                         {% endfor %}
@@ -58,12 +52,9 @@
                                             <th><strong>ID</strong></th>
                                             <th><strong>Titre</strong></th>
                                             <th><strong>Description</strong></th>
-                                            <th><strong>Pays</strong></th>
-                                            <th><strong>Ville</strong></th>
-                                            <th><strong>Adresse</strong></th>
-                                            <th><strong>Code postal</strong></th>
-                                            <th><strong>Capacité</strong></th>
-                                            <th><strong>Catégorie</strong></th>
+                                            <th><strong>Matière</strong></th>
+                                            <th><strong>Taille</strong></th>
+                                            <th><strong>Couleur</strong></th>
                                             <th class="text-center"><strong>Action</strong></th>
                                         </tr>
                                     </tfoot>

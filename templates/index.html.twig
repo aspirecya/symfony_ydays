@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block title %}
-    LokiSalle
+    KCUS Paris
 {% endblock %}
 
 {% block body %}
@@ -18,13 +18,11 @@
                     <div class="content-block">
                         <div class="short-popular-category-list text-center">
                             {% if produits %}
-                                <h2>Nos types de salles phares</h2>
+                                <h2>Nos types de saccoches phares</h2>
                                 <ul class="list-inline">
-                                    {% for category in categories %}
-                                        <li class="list-inline-item">
-                                            <a href=""><i class="fas fa-users"></i> {{ category.categorie }}</a>
-                                        </li>
-                                    {% endfor %}
+                                    <li class="list-inline-item">
+                                        <a href=""><i class="fas fa-users"></i> yo</a>
+                                    </li>
                                 </ul>
                             {% endif %}
                         </div>
@@ -39,45 +37,46 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-title">
-                        <h2>Salles disponibles</h2>
-                        <p>Lokisalle vous propose des salles pour accomoder tout vos evenements.</p>
+                        <h2>Produits disponibles</h2>
+                        <p>Kcus Paris vous propose des saccoches pour accomoder toutes vos envies vestimentaires.</p>
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 {% for produit in produits %}
-                    {% if produit.etat == "Libre" %}
                     <div class="col-sm-12 col-lg-4">
-                            <!-- product card -->
-                            <div class="product-item bg-light">
-                                <div class="card">
-                                    <div class="thumb-content">
-                                        <a href="{{ path('single_produit_page', { 'id': produit.id }) }}">
-                                            <img class="card-img-top img-fluid" src="{{ asset('/images/salles/' ~ produit.salle.photo) }}" alt="Card image cap">
-                                        </a>
-                                    </div>
+                        <!-- product card -->
+                        <div class="product-item bg-light">
+                            <div class="card">
+                                <div class="thumb-content">
+                                    <a href="{{ path('single_produit_page', { 'id': produit.id }) }}">
+                                        <img class="card-img-top img-fluid" src="{{ asset('/images/salles/' ~ produit.salle.photo) }}" alt="Card image cap">
+                                    </a>
+                                </div>
 
-                                    <div class="card-body">
-                                        <h4 class="card-title"><a href="{{ path('single_produit_page', { 'id': produit.id }) }}">{{ produit.salle.titre }}</a></h4><span class="price">{{ produit.prix | number_format(2, '.', ',') }} €</span>
-                                        <ul class="list-inline product-meta">
-                                            <li class="list-inline-item">
-                                                <a href="{{ path('single_produit_page', { 'id': produit.id }) }}"><i class="fa fa-folder-open-o"></i> {{ produit.salle.categorie }}</a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="{{ path('single_produit_page', { 'id': produit.id }) }}"><i class="fa fa-calendar"></i> {{ produit.getDateArrivee | date('d/m/Y') }} au {{ produit.getDateDepart | date('d/m/Y') }}</a>
-                                            </li>
+                                <div class="card-body">
+                                    <h4 class="card-title"><a href="{{ path('single_produit_page', { 'id': produit.id }) }}">{{ produit.salle.titre }}</a></h4><span class="price">{{ produit.prix | number_format(2, '.', ',') }} €</span>
+                                    <ul class="list-inline product-meta">
+                                        <li class="list-inline-item">
+                                            <a href="{{ path('single_produit_page', { 'id': produit.id }) }}"><i class="fas fa-arrows-alt-h"></i> {{ produit.salle.taille }}</a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="{{ path('single_produit_page', { 'id': produit.id }) }}"><i class="fas fa-palette"></i> {{ produit.salle.couleur }}</a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="{{ path('single_produit_page', { 'id': produit.id }) }}"><i class="fas fa-leaf"></i> {{ produit.salle.matiere }}</a>
+                                        </li>
+                                    </ul>
+                                    <p class="card-text">{{ produit.salle.description }}</p>
+                                    <div class="product-ratings">
+                                        <ul class="list-inline">
                                         </ul>
-                                        <p class="card-text">{{ produit.salle.description }}</p>
-                                        <div class="product-ratings">
-                                            <ul class="list-inline">
-                                            </ul>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    {% endif %}
+                    </div>
                 {% endfor %}
             </div>
         </div>

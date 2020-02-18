@@ -18,19 +18,7 @@ class ProduitType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date_arrivee', DateType::class, [
-                'widget' => 'single_text',
-            ])
-            ->add('date_depart', DateType::class, [
-                'widget' => 'single_text',
-            ])
             ->add('prix', MoneyType::class)
-            ->add('etat', ChoiceType::class, [
-                'choices'  => [
-                    'Reservée' => "Reservée",
-                    'Libre' => "Libre",
-                ],
-            ])
             ->add('salle', EntityType::class, [
                 'class' => Salle::class,
                 'choice_label' => 'titre'

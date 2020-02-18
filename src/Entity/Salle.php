@@ -36,34 +36,19 @@ class Salle
     private $file;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string", length=50)
      */
-    private $pays;
+    private $matiere;
 
     /**
      * @ORM\Column(type="string", length=20)
      */
-    private $ville;
+    private $taille;
 
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private $adresse;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $cp;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $capacite;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $categorie;
+    private $couleur;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Produit", mappedBy="salle", fetch="EAGER", cascade={"remove"})
@@ -124,74 +109,38 @@ class Salle
         return $this;
     }
 
-    public function getPays(): ?string
+    public function getMatiere(): ?string
     {
-        return $this->pays;
+        return $this->matiere;
     }
 
-    public function setPays(string $pays): self
+    public function setMatiere(string $matiere): self
     {
-        $this->pays = $pays;
+        $this->matiere = $matiere;
 
         return $this;
     }
 
-    public function getVille(): ?string
+    public function getTaille(): ?string
     {
-        return $this->ville;
+        return $this->taille;
     }
 
-    public function setVille(string $ville): self
+    public function setTaille(string $taille): self
     {
-        $this->ville = $ville;
+        $this->taille = $taille;
 
         return $this;
     }
 
-    public function getAdresse(): ?string
+    public function getCouleur(): ?string
     {
-        return $this->adresse;
+        return $this->couleur;
     }
 
-    public function setAdresse(string $adresse): self
+    public function setCouleur(string $couleur): self
     {
-        $this->adresse = $adresse;
-
-        return $this;
-    }
-
-    public function getCp(): ?int
-    {
-        return $this->cp;
-    }
-
-    public function setCp(int $cp): self
-    {
-        $this->cp = $cp;
-
-        return $this;
-    }
-
-    public function getCapacite(): ?int
-    {
-        return $this->capacite;
-    }
-
-    public function setCapacite(int $capacite): self
-    {
-        $this->capacite = $capacite;
-
-        return $this;
-    }
-
-    public function getCategorie(): ?string
-    {
-        return $this->categorie;
-    }
-
-    public function setCategorie(string $categorie): self
-    {
-        $this->categorie = $categorie;
+        $this->couleur = $couleur;
 
         return $this;
     }

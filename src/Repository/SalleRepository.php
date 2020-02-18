@@ -19,16 +19,6 @@ class SalleRepository extends ServiceEntityRepository
         parent::__construct($registry, Salle::class);
     }
 
-    public function findCategories() {
-        return $this->createQueryBuilder('categories')
-            -> select('s.categorie')
-            -> distinct(true)
-            -> from(Salle::class, 's')
-            -> orderBy('s.categorie', 'ASC')
-            -> getQuery()
-            -> getResult();
-    }
-
     public function countSalles()
     {
         return $this->createQueryBuilder('t')

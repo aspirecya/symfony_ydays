@@ -23,8 +23,6 @@ class ProduitRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('t')
             ->select('count(t.id)')
-            ->where('t.etat = :etat')
-            ->setParameter('etat', 'Libre')
             ->getQuery()
             ->getSingleScalarResult();
     }

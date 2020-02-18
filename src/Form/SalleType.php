@@ -19,20 +19,9 @@ class SalleType extends AbstractType
             ->add('titre')
             ->add('description')
             ->add('file', FileType::class)
-            ->add('pays', CountryType::class, [
-                'choice_translation_locale' => 'FR',
-            ])
-            ->add('ville')
-            ->add('adresse')
-            ->add('cp')
-            ->add('capacite')
-            ->add('categorie', ChoiceType::class, [
-                'choices'  => [
-                    "Réunion" => "Réunion",
-                    "Bureau" =>"Bureau",
-                    "Formation" => "Formation",
-                ],
-            ])
+            ->add('matiere')
+            ->add('taille')
+            ->add('couleur')
             ->add('valider', SubmitType::class);
 
         ;

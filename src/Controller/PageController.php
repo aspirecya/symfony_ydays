@@ -21,13 +21,11 @@ class PageController extends AbstractController
     public function homepage()
     {
         $produitRepository = $this->getDoctrine()->getRepository(Produit::class);
-        $categories = $this->getDoctrine()->getRepository(Salle::class)->findCategories();
 
         $produits = $produitRepository->findAll();
 
         return $this->render('index.html.twig', [
             'produits' => $produits,
-            'categories' => $categories,
         ]);
     }
 
@@ -101,7 +99,7 @@ class PageController extends AbstractController
         $commande->setDateEnregistrement(new \DateTime('now'));
         $commande->setMembre($user);
         $commande->setProduit($produit);
-        $produit->setEtat("Reservée");
+//        $produit->setEtat("Reservée");
 
         $user->addCommande($commande);
 

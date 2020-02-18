@@ -14,10 +14,10 @@
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-4">Gestion de produits LokiSalle</h3>
+                    <h3 class="text-dark mb-4">Gestion de listing</h3>
                     <div class="card shadow">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 font-weight-bold">Produits</p>
+                            <p class="text-primary m-0 font-weight-bold">Listing</p>
                         </div>
                         <div class="card-body">
                             <a href="{{ path('admin_produit_create') }}" class="btn btn-primary btn-xs pull-right mb-4"><b>+</b> Créer un listing produit</a>
@@ -27,11 +27,8 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Date de création</th>
-                                        <th>Date de début de la réservation</th>
-                                        <th>Date de fin de la réservation</th>
-                                        <th>Salle</th>
+                                        <th>Produit</th>
                                         <th>Prix</th>
-                                        <th>État</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                     </thead>
@@ -40,25 +37,19 @@
                                             <tr>
                                                 <td>{{ produit.id }}</td>
                                                 <td>{{ produit.getDateCreation | date('d/m/Y') }}</td>
-                                                <td>{{ produit.getDateArrivee() | date('d/m/Y') }}</td>
-                                                <td>{{ produit.getDateDepart() | date('d/m/Y') }}</td>
                                                 <td>{{ produit.getSalle() }}</td>
                                                 <td>{{ produit.prix | number_format(2, '.', ',') }} €</td>
-                                                <td>{{ produit.etat }}</td>
                                                 <td class="text-center"><a class='btn btn-info btn-xs' href="{{ path('admin_produit_edit', { id: produit.id }) }}"><i class="far fa-edit"></i> Edit</a> <a href="{{ path('admin_produit_delete', { id: produit.id }) }}" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i> Del</a></td>
                                             </tr>
                                         {% endfor %}
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                        <td><strong>ID</strong></td>
-                                        <th><strong>Date de création</strong></th>
-                                        <td><strong>Date de début de la réservation</strong></td>
-                                        <td><strong>Date de fin de la réservation</strong></td>
-                                        <td><strong>Salle</strong></td>
-                                        <td><strong>Prix</strong></td>
-                                        <td><strong>État</strong></td>
-                                        <td class="text-center"><strong>Action</strong></td>
+                                        <th>ID</th>
+                                        <th>Date de création</th>
+                                        <th>Produit</th>
+                                        <th>Prix</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                     </tfoot>
                                 </table>
