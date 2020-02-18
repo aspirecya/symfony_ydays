@@ -45,38 +45,40 @@
 
             <div class="row">
                 {% for produit in produits %}
-                    <div class="col-sm-12 col-lg-4">
-                        <!-- product card -->
-                        <div class="product-item bg-light">
-                            <div class="card">
-                                <div class="thumb-content">
-                                    <a href="{{ path('single_produit_page', { 'id': produit.id }) }}">
-                                        <img class="card-img-top img-fluid" src="{{ asset('/images/salles/' ~ produit.salle.photo) }}" alt="Card image cap">
-                                    </a>
-                                </div>
+                    {% if produit.stock >= 1 %}
+                        <div class="col-sm-12 col-lg-4">
+                            <!-- product card -->
+                            <div class="product-item bg-light">
+                                <div class="card">
+                                    <div class="thumb-content">
+                                        <a href="{{ path('single_produit_page', { 'id': produit.id }) }}">
+                                            <img class="card-img-top img-fluid" src="{{ asset('/images/salles/' ~ produit.salle.photo) }}" alt="Card image cap">
+                                        </a>
+                                    </div>
 
-                                <div class="card-body">
-                                    <h4 class="card-title"><a href="{{ path('single_produit_page', { 'id': produit.id }) }}">{{ produit.salle.titre }}</a></h4><span class="price">{{ produit.prix | number_format(2, '.', ',') }} €</span>
-                                    <ul class="list-inline product-meta">
-                                        <li class="list-inline-item">
-                                            <a href="{{ path('single_produit_page', { 'id': produit.id }) }}"><i class="fas fa-arrows-alt-h"></i> {{ produit.salle.taille }}</a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="{{ path('single_produit_page', { 'id': produit.id }) }}"><i class="fas fa-palette"></i> {{ produit.salle.couleur }}</a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="{{ path('single_produit_page', { 'id': produit.id }) }}"><i class="fas fa-leaf"></i> {{ produit.salle.matiere }}</a>
-                                        </li>
-                                    </ul>
-                                    <p class="card-text">{{ produit.salle.description }}</p>
-                                    <div class="product-ratings">
-                                        <ul class="list-inline">
+                                    <div class="card-body">
+                                        <h4 class="card-title"><a href="{{ path('single_produit_page', { 'id': produit.id }) }}">{{ produit.salle.titre }}</a></h4><span class="price">{{ produit.prix | number_format(2, '.', ',') }} €</span>
+                                        <ul class="list-inline product-meta">
+                                            <li class="list-inline-item">
+                                                <a href="{{ path('single_produit_page', { 'id': produit.id }) }}"><i class="fas fa-arrows-alt-h"></i> {{ produit.salle.taille }}</a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="{{ path('single_produit_page', { 'id': produit.id }) }}"><i class="fas fa-palette"></i> {{ produit.salle.couleur }}</a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="{{ path('single_produit_page', { 'id': produit.id }) }}"><i class="fas fa-leaf"></i> {{ produit.salle.matiere }}</a>
+                                            </li>
                                         </ul>
+                                        <p class="card-text">{{ produit.salle.description }}</p>
+                                        <div class="product-ratings">
+                                            <ul class="list-inline">
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    {% endifg %}
                 {% endfor %}
             </div>
         </div>
