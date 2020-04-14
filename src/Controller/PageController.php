@@ -21,11 +21,17 @@ class PageController extends AbstractController
     public function homepage()
     {
         $produitRepository = $this->getDoctrine()->getRepository(Produit::class);
+        $matieres = $this->getDoctrine()->getRepository(Salle::class)->findMatieres();
+        $couleurs = $this->getDoctrine()->getRepository(Salle::class)->findCouleurs();
+        $tailles = $this->getDoctrine()->getRepository(Salle::class)->findTailles();
 
         $produits = $produitRepository->findAll();
 
         return $this->render('index.html.twig', [
             'produits' => $produits,
+            'matieres' => $matieres,
+            'couleurs' => $couleurs,
+            'tailles' => $tailles,
         ]);
     }
 

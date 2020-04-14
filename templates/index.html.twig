@@ -18,11 +18,13 @@
                     <div class="content-block">
                         <div class="short-popular-category-list text-center">
                             {% if produits %}
-                                <h2>Nos types de saccoches phares</h2>
+                                <h2>Nos matières de saccoches phares</h2>
                                 <ul class="list-inline">
-                                    <li class="list-inline-item">
-                                        <a href=""><i class="fas fa-users"></i> yo</a>
-                                    </li>
+                                    {% for matiere in matieres %}
+                                        <li class="list-inline-item">
+                                            <a href=""><i class="fas fa-leaf"></i> {{ matiere.matiere }}</a>
+                                        </li>
+                                    {% endfor %}
                                 </ul>
                             {% endif %}
                         </div>
@@ -78,13 +80,69 @@
                                 </div>
                             </div>
                         </div>
-                    {% endifg %}
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>
     </section>
 
-
-
-
+    <section class=" section">
+        <!-- Container Start -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Section title -->
+                    <div class="section-title">
+                        <h2>Recherchez la saccoche parfaite</h2>
+                        <p>Filtrez, cherchez, craquez... utilisez les filtres pour trouver la saccoche qui vous conviens.</p>
+                    </div>
+                    <div class="row">
+                        <!-- Category list -->
+                        <div class="col-lg-4 offset-lg-0 col-md-6 offset-md-1 col-sm-7 col-7">
+                            <div class="category-block">
+                                <div class="header">
+                                    <i class="fas fa-leaf icon-bg-1"></i>
+                                    <h4>Matières</h4>
+                                </div>
+                                <ul class="category-list" >
+                                    {% for matiere in matieres %}
+                                        <li><a href="#">{{ matiere.matiere }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div> <!-- /Category List -->
+                        <!-- Category list -->
+                        <div class="col-lg-4 offset-lg-0 col-md-6 offset-md-1 col-sm-7 col-7">
+                            <div class="category-block">
+                                <div class="header">
+                                    <i class="fas fa-arrows-alt-h icon-bg-2"></i>
+                                    <h4>Tailles</h4>
+                                </div>
+                                <ul class="category-list" >
+                                    {% for taille in tailles %}
+                                        <li><a href="#">{{ taille.taille }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div> <!-- /Category List -->
+                        <!-- Category list -->
+                        <div class="col-lg-4 offset-lg-0 col-md-6 offset-md-1 col-sm-7 col-7">
+                            <div class="category-block">
+                                <div class="header">
+                                    <i class="fas fa-palette icon-bg-3"></i>
+                                    <h4>Couleurs</h4>
+                                </div>
+                                <ul class="category-list" >
+                                    {% for couleur in couleurs %}
+                                        <li><a href="#">{{ couleur.couleur }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div> <!-- /Category List -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Container End -->
+    </section>
 {% endblock %}

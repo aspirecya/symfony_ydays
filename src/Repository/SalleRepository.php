@@ -26,4 +26,34 @@ class SalleRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    public function findMatieres() {
+        return $this->createQueryBuilder('matieres')
+            -> select('s.matiere')
+            -> distinct(true)
+            -> from(Salle::class, 's')
+            -> orderBy('s.matiere', 'ASC')
+            -> getQuery()
+            -> getResult();
+    }
+
+    public function findTailles() {
+        return $this->createQueryBuilder('tailles')
+            -> select('s.taille')
+            -> distinct(true)
+            -> from(Salle::class, 's')
+            -> orderBy('s.taille', 'ASC')
+            -> getQuery()
+            -> getResult();
+    }
+
+    public function findCouleurs() {
+        return $this->createQueryBuilder('couleurs')
+            -> select('s.couleur')
+            -> distinct(true)
+            -> from(Salle::class, 's')
+            -> orderBy('s.couleur', 'ASC')
+            -> getQuery()
+            -> getResult();
+    }
 }
